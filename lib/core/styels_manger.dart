@@ -31,6 +31,11 @@ class StylesManager {
     fontWeight: FontWeight.normal,
     color: Colors.black,
   );
+  static TextStyle bodyText4 = TextStyle(
+    fontSize: 18.0.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
 
   // Define color palette
   static const Color primaryColor = Color(0xFF6200EA);
