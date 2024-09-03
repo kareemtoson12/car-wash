@@ -1,11 +1,7 @@
-import 'package:clean_wash/features/map_screen/view.dart';
-import 'package:clean_wash/features/map_screen/widgets/google_map.dart';
-
+import 'package:clean_wash/features/registration/signin/signin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../HomePage/NaiveBar/homepage_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,7 +12,7 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: SigninView(),
       ),
     );
   }
