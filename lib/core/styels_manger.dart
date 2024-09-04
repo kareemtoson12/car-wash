@@ -15,6 +15,12 @@ class StylesManager {
     color: Colors.grey,
   );
 
+  static TextStyle headline3 = TextStyle(
+    fontSize: 25.0.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+
   static TextStyle bodyText1 = TextStyle(
     fontSize: 17.0.sp,
     fontWeight: FontWeight.w600,
@@ -35,6 +41,18 @@ class StylesManager {
     fontSize: 18.0.sp,
     fontWeight: FontWeight.bold,
     color: Colors.white,
+  );
+
+  static TextStyle bodyText5 = TextStyle(
+    fontSize: 14.0.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.grey,
+  );
+
+   static TextStyle bodyText6 = TextStyle(
+    fontSize: 14.0.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.orange,
   );
 
   // Define color palette
