@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/widgets/NotificationButton.dart';
 import '../../../../core/styels_manger.dart';
-import 'AboutUs_controller.dart';// Import your controller
+import 'AboutUs_controller.dart';
 
 class AboutUsView extends StatelessWidget {
   @override
@@ -27,7 +27,7 @@ class AboutUsView extends StatelessWidget {
           'About us',
           style: StylesManager.titleText,
         ),
-        actions: [NotificationButton("gotoScreen")],
+        actions: [NotificationButton()],
       ),
       body: PageView.builder(
         controller: controller.pageController,
@@ -69,11 +69,12 @@ class AboutUsView extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
                 // Wrap only the indicators with Obx
-                Obx(() => Row(
+                Obx(
+                  () => Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
                       controller.pages.length,
-                          (dotIndex) => Container(
+                      (dotIndex) => Container(
                         margin: EdgeInsets.symmetric(horizontal: 4),
                         width: 8,
                         height: 8,

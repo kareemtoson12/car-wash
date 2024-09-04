@@ -11,7 +11,7 @@ class AboutUsController extends GetxController {
       'image': 'images/img_1.png',
       'title': 'Convenient Car Care \nat Your Fingertips:',
       'description':
-      'At our car wash app, we understand the importance of convenience in your busy life. We have developed a user-friendly mobile application that allows you to schedule and manage your car wash appointments with just a few taps on your phone.',
+      'At our Car wash app, we understand the importance of convenience in your busy life. We have developed a user-friendly mobile application that allows you to schedule and manage your car wash appointments with just a few taps on your phone.',
     },
     {
       'image': 'images/car1.jpg',

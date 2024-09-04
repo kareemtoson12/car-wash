@@ -45,7 +45,7 @@ class ProfileView extends StatelessWidget {
             style: StylesManager.titleText
           ),
           centerTitle: true,
-          actions: [NotificationButton("gotoScreen")],
+          actions: [NotificationButton()],
         ),
         body: Container(
           child: Column(
