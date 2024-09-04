@@ -17,7 +17,7 @@ class StylesManager {
   );
 
   static TextStyle headline3 = TextStyle(
-    fontSize: 15.sp,
+    fontSize: 25.sp,
     fontWeight: FontWeight.w500,
     color: Colors.white,
   );
@@ -49,7 +49,7 @@ class StylesManager {
     color: Colors.white,
   );
   static TextStyle bodyText6 = TextStyle(
-    fontSize: 18.0.sp,
+    fontSize: 14.0.sp,
     fontWeight: FontWeight.bold,
     color: Colors.orange,
   );

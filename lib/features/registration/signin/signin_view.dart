@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/custom_buttom.dart';
 import '../widgets/custom_textfield.dart';
+import 'signin_controller.dart';
 
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
@@ -83,11 +84,11 @@ class SigninView extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.030),
                     CustomButtom(
                       onTap: () {
-                        /* AuthService().signInWithEmailAndPassword(
+                        SigninController().signUpWithEmailAndPassword(
                           context,
                           emailController.text,
                           passwordController.text,
-                        ); */
+                        );
                       },
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
@@ -121,14 +122,6 @@ class SigninView extends StatelessWidget {
                           style: StylesManager.bodyText3,
                         ),
                         GestureDetector(
-                          /* onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignupScreen(),
-                              ),
-                            );
-                          }, */
                           child: Text(
                             'Sign Up',
                             style: StylesManager.bodyText6,
