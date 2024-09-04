@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -99,10 +100,12 @@ Widget Header() {
           child: Container(
               height: 200,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage("images/bubbles 2.jpg"),
-                fit: BoxFit.cover,
-              ))),
+                color:ColorsManger.darkblue,
+                  // image: DecorationImage(
+                // image: AssetImage("images/bubbles 2.jpg"),
+                // fit: BoxFit.cover,)
+
+              ),)
         ),
       ),
       Padding(
@@ -353,7 +356,7 @@ Widget About_us() {
         height: 10,
       ),
       Container(
-        height: 150,
+        height: 150.h,
         width: double.infinity,
         decoration: BoxDecoration(
           color: ColorsManger.darkblue,
