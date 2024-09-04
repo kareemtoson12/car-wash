@@ -7,30 +7,43 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../core/styels_manger.dart';
 import '../../../core/widgets/NotificationButton.dart';
+void _logout() {
+  print("Logout tapped");
+}
+
 var settings_options = [
   {
     'icon':FaIcon(FontAwesomeIcons.pencil,color: Colors.white,),
     'title': 'Edit Profile',
     'color':ColorsManger.darkblue,
-    'Gotopage':""
+    'function':(){}
   },
   {
     'icon':FaIcon(FontAwesomeIcons.creditCard,color: Colors.white,size: 18,),
     'title': 'Payment information',
     'color':ColorsManger.darkblue,
-    'Gotopage':""
+    'function':(){}
   },
   {
     'icon':FaIcon(FontAwesomeIcons.idCard,color: Colors.black,),
     'title': 'Loyalty club',
     'color':Colors.yellow,
-    'Gotopage':""
+    'function':(){}
   },
   {
     'icon':FaIcon(FontAwesomeIcons.rightFromBracket,color: Colors.white,),
     'title': 'Log out',
     'color':Colors.red,
-    'Gotopage':""
+    'function':(){
+      Get.defaultDialog(
+          title: "Log Out",
+          content: const Text("Are you sure you want to log out?"),
+          onCancel: (){},
+          textConfirm: "Yes",
+          onConfirm:()async{
+            }
+      );
+    }
   },
 ];
 class ProfileView extends StatelessWidget {
@@ -164,9 +177,7 @@ Widget SettingsWidget() {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: () {
-            Get.to(()=>settings_options[i]['Gotopage']);
-          },
+          onTap:settings_options[i]['function'] as Function(),
           child: Row(
             children: [
               CircleAvatar(
