@@ -28,7 +28,7 @@ class CustomButtom extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: color ?? ColorsManger.darkblue,
+          color: color ?? ColorsManger.orange,
           borderRadius: BorderRadius.circular(screenWidth * 0.04),
         ),
         width: screenWidth * 0.88,
@@ -36,7 +36,7 @@ class CustomButtom extends StatelessWidget {
         child: Center(
           child: text != null ? Text(
             text!,
-            style: StylesManager.headline2,
+            style: StylesManager.bodyText4,
           ) : widget,
         ),
       ),
