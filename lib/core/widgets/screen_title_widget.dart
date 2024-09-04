@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: non_constant_identifier_names
-Widget ScreenTitleWidget() {
+Widget ScreenTitleWidget(String subTitle) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
@@ -16,7 +16,7 @@ Widget ScreenTitleWidget() {
             style: StylesManager.headline1,
           ),
           Text(
-            'pick date and time',
+            subTitle,
             style: StylesManager.headline2,
           )
         ]),
@@ -24,3 +24,4 @@ Widget ScreenTitleWidget() {
     ],
   );
 }
+//'Standard wash'      'pick date and time',YY

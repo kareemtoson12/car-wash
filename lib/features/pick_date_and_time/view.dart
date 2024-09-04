@@ -1,6 +1,7 @@
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
 import 'package:clean_wash/core/widgets/selection_widget.dart';
+import 'package:clean_wash/features/map_screen/maps.dart';
 import 'package:clean_wash/features/map_screen/view.dart';
 
 import 'package:clean_wash/features/pick_date_and_time/controller.dart';
@@ -26,10 +27,11 @@ class PickDateAndTime extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ScreenTitleWidget(),
+                ScreenTitleWidget('pick date and time'),
                 const Divider(),
                 //Expanded(child: StepperView()),
-                SelectionWidget(),
+                SelectionWidget('Select your date and time',
+                    'select days when wash is available'),
                 Obx(() => TableCalendar(
                       firstDay: DateTime.utc(2010, 10, 16),
                       lastDay: DateTime.utc(2030, 3, 14),
@@ -69,7 +71,7 @@ class PickDateAndTime extends StatelessWidget {
                       ),
                     )),
                 TimeSelectionWidget(),
-                NextButton(MapScreen()),
+                NextButton(MapWidget()),
               ],
             ),
           ),
