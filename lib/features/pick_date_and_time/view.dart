@@ -2,7 +2,6 @@ import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
 import 'package:clean_wash/core/widgets/selection_widget.dart';
 import 'package:clean_wash/features/map_screen/maps.dart';
-import 'package:clean_wash/features/map_screen/view.dart';
 
 import 'package:clean_wash/features/pick_date_and_time/controller.dart';
 import 'package:clean_wash/features/pick_date_and_time/widgets/time_selection_widget.dart';

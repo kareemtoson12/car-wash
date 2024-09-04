@@ -1,5 +1,3 @@
-import 'package:clean_wash/features/map_screen/maps.dart';
-import 'package:clean_wash/features/map_screen/view.dart';
 import 'package:clean_wash/features/pick_date_and_time/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
