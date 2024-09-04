@@ -1,7 +1,7 @@
-import 'package:clean_wash/features/pick_date_and_time/view.dart';
+import 'package:clean_wash/features/registration/signin/signin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -9,10 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(360, 690),
+      designSize: const Size(360, 690),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: PickDateAndTime(),
+        home: SigninView(),
       ),
     );
   }

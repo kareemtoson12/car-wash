@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'colors_manger.dart';
+
 class StylesManager {
   // Define text styles
   static TextStyle headline1 = TextStyle(
@@ -36,7 +38,10 @@ class StylesManager {
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
-
+  static TextStyle titleText = TextStyle(
+      fontSize: 25,
+      color: ColorsManger.darkblue,
+      fontWeight: FontWeight.bold);
   // Define color palette
   static const Color primaryColor = Color(0xFF6200EA);
   static const Color secondaryColor = Color(0xFF03DAC6);

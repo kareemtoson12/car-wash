@@ -30,11 +30,13 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  flutter_map: ^7.0.2
+  flutter_custom_clippers: ^2.1.0
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.10+1
+  font_awesome_flutter: ^10.7.0
   get: ^4.6.6
-  
+  google_maps_flutter: ^2.9.0
+  google_sign_in: ^6.2.1
   http: ^1.2.2
   location: ^6.0.2
   shared_preferences: ^2.3.2
