@@ -317,7 +317,7 @@ Widget Promotions() {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: ColorsManger.white)),
-                    CustomButton("Join now",()=>Text("null"))
+                    CustomButton("Join now",()=>AboutUsView())
                   ],
                 ),
               ),
@@ -369,7 +369,7 @@ Widget About_us() {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CustomButton("Get to Know Us",() => SigninView())
+                    CustomButton("Get to Know Us",()=>AboutUsView())
                   ],
                 ),
               ),

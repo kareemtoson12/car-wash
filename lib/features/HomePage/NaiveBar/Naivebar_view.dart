@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
 
   static List<Widget> _widgetOptions = <Widget>[
     HomeView(),
-    SigninView(),
+    Text("Services"),
     ProfileView()
   ];
 
