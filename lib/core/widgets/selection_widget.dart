@@ -3,16 +3,16 @@
 import 'package:clean_wash/core/styels_manger.dart';
 import 'package:flutter/material.dart';
 
-Widget SelectionWidget() {
+Widget SelectionWidget(String topName, String bottomName) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
-        'Select your date and time ',
+        topName,
         style: StylesManager.bodyText1,
       ),
       Text(
-        'Select days when wash is available',
+        bottomName,
         style: StylesManager.bodyText2,
       ),
     ],

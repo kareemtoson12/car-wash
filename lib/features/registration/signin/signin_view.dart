@@ -25,23 +25,27 @@ class SigninView extends StatelessWidget {
             Container(
               height: screenHeight * 0.33,
               color: ColorsManger.darkblue,
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: screenWidth * 0.05,
-                right: screenWidth * 0.05,
-                top: screenHeight * 0.05,
-                bottom: screenHeight * 0.05,
-              ),
-              child: SizedBox(
-                width: screenWidth,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Log In', style: StylesManager.headline1),
-                    Text('Enter your details below to log in',
-                        style: StylesManager.bodyText3),
-                  ],
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: screenWidth * 0.05,
+                    right: screenWidth * 0.05,
+                    top: screenHeight * 0.15,
+                    bottom: screenHeight * 0.05,
+                  ),
+                  child: SizedBox(
+                    width: screenWidth,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Sign In to your account',
+                            style: StylesManager.headline3),
+                        Text('Welcome back!', style: StylesManager.bodyText5),
+                        Text('Select method to log in',
+                            style: StylesManager.bodyText5),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -57,7 +61,7 @@ class SigninView extends StatelessWidget {
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  //vertical: screenHeight * 0.04,
+                  vertical: screenHeight * 0.04,
                   horizontal: screenWidth * 0.06,
                 ),
                 child: Column(
@@ -88,6 +92,11 @@ class SigninView extends StatelessWidget {
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
                       text: 'Log In',
+                    ),
+                    SizedBox(height: screenHeight * 0.030),
+                    Text(
+                      'or login with',
+                      style: StylesManager.bodyText3,
                     ),
                     SizedBox(height: screenHeight * 0.030),
                     Row(
@@ -122,7 +131,7 @@ class SigninView extends StatelessWidget {
                           }, */
                           child: Text(
                             'Sign Up',
-                            style: StylesManager.bodyText3,
+                            style: StylesManager.bodyText6,
                           ),
                         ),
                       ],
