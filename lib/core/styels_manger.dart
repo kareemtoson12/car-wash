@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'colors_manger.dart';
 
 class StylesManager {
@@ -15,6 +14,12 @@ class StylesManager {
     fontSize: 15.sp,
     fontWeight: FontWeight.w500,
     color: Colors.grey,
+  );
+
+  static TextStyle headline3 = TextStyle(
+    fontSize: 25.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
   );
 
   static TextStyle bodyText1 = TextStyle(
@@ -37,6 +42,16 @@ class StylesManager {
     fontSize: 18.0.sp,
     fontWeight: FontWeight.bold,
     color: Colors.white,
+  );
+  static TextStyle bodyText5 = TextStyle(
+    fontSize: 14.0.sp,
+    fontWeight: FontWeight.normal,
+    color: Colors.white,
+  );
+  static TextStyle bodyText6 = TextStyle(
+    fontSize: 14.0.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.orange,
   );
   static TextStyle titleText = TextStyle(
       fontSize: 25,

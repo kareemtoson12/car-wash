@@ -28,12 +28,14 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.8
- # firebase_auth: ^4.16.0
   flutter:
     sdk: flutter
   flutter_custom_clippers: ^2.1.0
   flutter_map: ^7.0.2
   flutter_screenutil: ^5.9.3
+  device_preview: ^1.2.0
+  firebase_auth: ^5.2.0
+  firebase_core: ^3.4.0
   flutter_svg: ^2.0.10+1
   font_awesome_flutter: ^10.7.0
   get: ^4.6.6
@@ -44,14 +46,9 @@ dependencies:
   location: ^6.0.2
   shared_preferences: ^2.3.2
   table_calendar: ^3.1.2
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
