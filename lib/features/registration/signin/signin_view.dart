@@ -39,10 +39,10 @@ class SigninView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Sign In to your account',
-                            style: StylesManager.headline3),
-                        Text('Welcome back!', style: StylesManager.bodyText5),
+                            style: StylesManager.headline2),
+                        Text('Welcome back!', style: StylesManager.bodyText4),
                         Text('Select method to log in',
-                            style: StylesManager.bodyText5),
+                            style: StylesManager.bodyText4),
                       ],
                     ),
                   ),
@@ -131,7 +131,7 @@ class SigninView extends StatelessWidget {
                           }, */
                           child: Text(
                             'Sign Up',
-                            style: StylesManager.bodyText6,
+                            style: StylesManager.bodyText4,
                           ),
                         ),
                       ],
