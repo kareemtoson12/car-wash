@@ -178,7 +178,7 @@ Widget Features_services() {
               fontWeight: FontWeight.bold,
               color: Colors.black38)),
       Container(
-        height: 100.h,
+        height: 120.h,
         alignment: Alignment.center,
         child: ListView.builder(
           shrinkWrap: true,
