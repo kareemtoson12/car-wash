@@ -54,7 +54,7 @@ class StylesManager {
     color: Colors.orange,
   );
   static TextStyle titleText = TextStyle(
-      fontSize: 25,
+      fontSize: 22.sp,
       color: ColorsManger.darkblue,
       fontWeight: FontWeight.bold);
   // Define color palette

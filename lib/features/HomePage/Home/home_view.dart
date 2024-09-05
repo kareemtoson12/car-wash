@@ -53,12 +53,9 @@ class HomeView extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 15,
+                          height:10.h,
                         ),
                         Features_services(),
-                        SizedBox(
-                          height: 8,
-                        ),
                         appointment(),
                         SizedBox(
                           height: 10,
@@ -123,7 +120,7 @@ Widget Header() {
                   "Dohaa aymann",
                   style: TextStyle(
                       color: ColorsManger.white,
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold),
                 ),
                 IconButton(
@@ -140,25 +137,28 @@ Widget Header() {
               style: TextStyle(
                   color: ColorsManger.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 35),
+                  fontSize:30.sp),
             ),
             SizedBox(
               height: 10,
             ),
             Container(
-              height: 50,
+              height: 50.h, // make this responsive as well
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: ColorsManger.white,
-                  border: Border.all(width: 1, color: Colors.grey),
-                  borderRadius: BorderRadius.circular(15)),
+                color: ColorsManger.white,
+                border: Border.all(width: 1.w, color: Colors.grey),
+                borderRadius: BorderRadius.circular(15.r),
+              ),
               child: TextFormField(
+                textAlign: TextAlign.start, // Align text to center
                 decoration: InputDecoration(
-                    hintText: "Search..",
-                    fillColor: ColorsManger.white,
-                    prefixIcon: Icon(Icons.search),
-                    suffixIcon: Icon(Icons.settings),
-                    border: InputBorder.none),
+                  hintText: "Search..",
+                  fillColor: ColorsManger.white,
+                  prefixIcon: Icon(Icons.search, size: 20.sp),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(vertical: 12.h), // Adjust the padding
+                ),
               ),
             ),
           ],
@@ -178,7 +178,8 @@ Widget Features_services() {
               fontWeight: FontWeight.bold,
               color: Colors.black38)),
       Container(
-        height: 100,
+        height: 100.h,
+        alignment: Alignment.center,
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
@@ -190,13 +191,13 @@ Widget Features_services() {
                 children: [
                   CircleAvatar(
                     backgroundImage: AssetImage("${features[i]['image']}"),
-                    radius: 30,
+                    radius: 30.r,
                   ),
                   Text(
                     "${features[i]['title']}",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 16.spMin,
                         color: ColorsManger.darkblue),
                   )
                 ],
@@ -253,7 +254,7 @@ Widget appointment() {
                         Text(
                           "You don't have any car wash appointment yet..",
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 18.spMin,
                               fontWeight: FontWeight.bold,
                               color: ColorsManger.white),
                         ),
@@ -317,7 +318,7 @@ Widget Promotions() {
                   children: [
                     Text("For our most loyal customers!",
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 20.spMin,
                             fontWeight: FontWeight.bold,
                             color: ColorsManger.white)),
                     CustomButton("Join now",()=>AboutUsView())
