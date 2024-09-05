@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ColorsManger {
   static var darkblue = const Color(0xff1B5276);
+  static var purpule = const Color(0xffBF40BF);
   static var orange = Colors.orange;
   static var AccentOrange = Colors.orangeAccent;
   static var white = const Color(0xffffffff);
