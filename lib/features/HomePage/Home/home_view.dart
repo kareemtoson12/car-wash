@@ -39,43 +39,45 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Header(),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(15, 12, 15, 0),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height:10.h,
-                        ),
-                        Features_services(),
-                        appointment(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Promotions(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        About_us(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Container(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Header(),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(15, 12, 15, 0),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height:10.h,
+                          ),
+                          Features_services(),
+                          appointment(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Promotions(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          About_us(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
