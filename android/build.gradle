@@ -1,10 +1,12 @@
 buildscript{
+    ex.kotlin_version = '1.7.10'
     repositories{
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies{
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.4.2'
     }
 }
