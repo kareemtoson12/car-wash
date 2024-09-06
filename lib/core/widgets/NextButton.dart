@@ -1,9 +1,10 @@
+import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/styels_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-Widget NextButton(gotoScreen) {
+Widget NextButton(var name,gotoScreen) {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: 15.h,
@@ -18,10 +19,10 @@ Widget NextButton(gotoScreen) {
         padding: EdgeInsets.all(10.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.orange,
+          color:ColorsManger.orange,
         ),
         child: Center(
-          child: Text('Next >', style: StylesManager.bodyText4),
+          child: Text('$name', style: StylesManager.bodyText4),
         ),
       ),
     ),

@@ -176,11 +176,11 @@ Widget Features_services() {
     children: [
       Text("Featured services",
           style: TextStyle(
-              fontSize: 16,
+              fontSize: 16.spMin,
               fontWeight: FontWeight.bold,
               color: Colors.black38)),
       Container(
-        height: 120.h,
+        height: 100.h,
         alignment: Alignment.center,
         child: ListView.builder(
           shrinkWrap: true,

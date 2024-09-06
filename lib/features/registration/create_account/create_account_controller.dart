@@ -14,7 +14,7 @@ class CreateAccountController {
       User? user = userCredential.user;
 
       if (user != null) {
-        Get.to(HomePage());
+        Get.to(NaivebarView());
       }
       return user;
     } catch (e) {

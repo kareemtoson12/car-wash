@@ -27,8 +27,8 @@ class CustomTextField extends StatelessWidget {
       keyboardType: TextInputType.visiblePassword,
       obscureText: obscureText,
       decoration: InputDecoration(
-        labelText: hintText,
-        labelStyle: StylesManager.bodyText3,
+        // labelText: hintText,
+        // labelStyle: StylesManager.bodyText3,
         suffixIcon: obscureText ? const Icon(Icons.remove_red_eye) : null,
         border: OutlineInputBorder(
           borderSide: BorderSide(color: ColorsManger.grey),
