@@ -1,16 +1,14 @@
 import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/styels_manger.dart';
-import 'package:clean_wash/features/registration/create_account/create_account_view.dart';
+import 'package:clean_wash/features/registration/create_account/create_account_controller.dart';
+import 'package:clean_wash/features/registration/signin/signin_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../widgets/custom_buttom.dart';
 import '../widgets/custom_textfield.dart';
-import 'signin_controller.dart';
 
-class SigninView extends StatelessWidget {
-  const SigninView({super.key});
+class CreateAccountView extends StatelessWidget {
+  const CreateAccountView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +17,8 @@ class SigninView extends StatelessWidget {
     final screenWidth = mediaQuery.size.width;
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    final TextEditingController fullNameController = TextEditingController();
+    final TextEditingController repeatPasswordController = TextEditingController();
 
     return Scaffold(
       backgroundColor: ColorsManger.white,
@@ -41,10 +41,8 @@ class SigninView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Sign In to your account',
-                            style: StylesManager.headline3),
-                        Text('Welcome back!', style: StylesManager.bodyText5),
-                        Text('Select method to log in',
+                        Text('Create Account', style: StylesManager.headline3),
+                        Text('Join us now!!! We wash cars, You relax',
                             style: StylesManager.bodyText5),
                       ],
                     ),
@@ -70,23 +68,39 @@ class SigninView extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
+                      controller: fullNameController,
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      hintText: 'Full name',
+                    ),
+                    SizedBox(height: screenHeight * 0.032),
+                    CustomTextField(
                       controller: emailController,
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
-                      hintText: 'Email',
+                      hintText: 'Password',
+                    
                     ),
-                    SizedBox(height: screenHeight * 0.032),
+                    SizedBox(height: screenHeight * 0.030),
                     CustomTextField(
                       controller: passwordController,
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
                       hintText: 'Password',
+                        obscureText: true,
+                    ),
+                    SizedBox(height: screenHeight * 0.032),
+                    CustomTextField(
+                      controller: repeatPasswordController,
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      hintText: 'Repeat Password',
                       obscureText: true,
                     ),
                     SizedBox(height: screenHeight * 0.030),
                     CustomButtom(
                       onTap: () {
-                        SigninController().signInWithEmailAndPassword(
+                        CreateAccountController().signUpWithEmailAndPassword(
                           context,
                           emailController.text,
                           passwordController.text,
@@ -94,41 +108,22 @@ class SigninView extends StatelessWidget {
                       },
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
-                      text: 'Log In',
+                      text: 'Create account',
                     ),
-                    SizedBox(height: screenHeight * 0.030),
-                    Text(
-                      'or login with',
-                      style: StylesManager.bodyText3,
-                    ),
-                    SizedBox(height: screenHeight * 0.030),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset(
-                          height: 40.h,
-                          'images/google_logo.svg.png',
-                        ),
-                        SvgPicture.asset(
-                          height: 40.h,
-                          'images/facebook_logo.svg',
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: screenHeight * 0.030),
+                   SizedBox(height: screenHeight * 0.030),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Don\'t have an account? ',
+                          'Already have an account? ',
                           style: StylesManager.bodyText3,
                         ),
                         GestureDetector(
                           onTap: (){
-                            Get.to(const CreateAccountView());
+                            Get.to(const SigninView());
                           },
                           child: Text(
-                            'Sign Up',
+                            'Log In',
                             style: StylesManager.bodyText6,
                           ),
                         ),
