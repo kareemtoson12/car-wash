@@ -53,7 +53,7 @@ class HomeView extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(
-                          height:10.h,
+                          height: 10.h,
                         ),
                         Features_services(),
                         appointment(),
@@ -93,17 +93,17 @@ Widget Header() {
       ClipPath(
         clipper: WaveClipperTwo(),
         child: ImageFiltered(
-    imageFilter: ImageFilter.blur(sigmaX: 2.0, sigmaY:3.0), // Adjust the blur intensity here
-          child: Container(
+            imageFilter: ImageFilter.blur(
+                sigmaX: 2.0, sigmaY: 3.0), // Adjust the blur intensity here
+            child: Container(
               height: 200,
               decoration: BoxDecoration(
-                color:ColorsManger.darkblue,
-                  // image: DecorationImage(
+                color: ColorsManger.darkblue,
+                // image: DecorationImage(
                 // image: AssetImage("images/bubbles 2.jpg"),
                 // fit: BoxFit.cover,)
-
-              ),)
-        ),
+              ),
+            )),
       ),
       Padding(
         padding: EdgeInsets.fromLTRB(15, 12, 15, 0),
@@ -137,7 +137,7 @@ Widget Header() {
               style: TextStyle(
                   color: ColorsManger.white,
                   fontWeight: FontWeight.bold,
-                  fontSize:30.sp),
+                  fontSize: 30.sp),
             ),
             SizedBox(
               height: 10,
@@ -157,7 +157,8 @@ Widget Header() {
                   fillColor: ColorsManger.white,
                   prefixIcon: Icon(Icons.search, size: 20.sp),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 12.h), // Adjust the padding
+                  contentPadding: EdgeInsets.symmetric(
+                      vertical: 12.h), // Adjust the padding
                 ),
               ),
             ),
@@ -174,7 +175,7 @@ Widget Features_services() {
     children: [
       Text("Featured services",
           style: TextStyle(
-              fontSize: 16,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               color: Colors.black38)),
       Container(
@@ -186,7 +187,7 @@ Widget Features_services() {
           itemCount: features.length,
           itemBuilder: (context, i) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(5.0.w),
               child: Column(
                 children: [
                   CircleAvatar(
@@ -234,17 +235,17 @@ Widget appointment() {
             Expanded(
               child: Stack(
                 children: [
-                  Container(width:100,
+                  Container(
+                    width: 100,
                     decoration: BoxDecoration(
-                      color:Colors.blueGrey,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15),
-                        topLeft: Radius.circular(15),
-                        bottomRight:Radius.circular(0),
-                        topRight:Radius.circular(100),
-                      )
-
-                  ),),
+                        color: Colors.blueGrey,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          topLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(0),
+                          topRight: Radius.circular(100),
+                        )),
+                  ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(15, 12, 0, 12),
                     child: Column(
@@ -258,7 +259,7 @@ Widget appointment() {
                               fontWeight: FontWeight.bold,
                               color: ColorsManger.white),
                         ),
-                        CustomButton("Book now",()=>Text("data"))
+                        CustomButton("Book now", () => Text("data"))
                       ],
                     ),
                   ),
@@ -300,11 +301,11 @@ Widget Promotions() {
         decoration: BoxDecoration(
           color: ColorsManger.darkblue,
           borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(
-                image: AssetImage("images/offers2.jpg"),
-                fit: BoxFit.cover,
-              ),
-              // borderRadius: BorderRadius.circular(15),
+          image: DecorationImage(
+            image: AssetImage("images/offers2.jpg"),
+            fit: BoxFit.cover,
+          ),
+          // borderRadius: BorderRadius.circular(15),
           // image: DecorationImage(image: AssetImage("images/img.png"),fit: BoxFit.cover)
         ),
         child: Row(
@@ -321,7 +322,7 @@ Widget Promotions() {
                             fontSize: 20.spMin,
                             fontWeight: FontWeight.bold,
                             color: ColorsManger.white)),
-                    CustomButton("Join now",()=>AboutUsView())
+                    CustomButton("Join now", () => AboutUsView())
                   ],
                 ),
               ),
@@ -360,10 +361,10 @@ Widget About_us() {
         height: 150.h,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: ColorsManger.darkblue,
-          borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(image: AssetImage("images/img_1.png"),fit: BoxFit.cover)
-        ),
+            color: ColorsManger.darkblue,
+            borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(
+                image: AssetImage("images/img_1.png"), fit: BoxFit.cover)),
         child: Row(
           children: [
             Expanded(
@@ -373,7 +374,7 @@ Widget About_us() {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CustomButton("Get to Know Us",()=>AboutUsView())
+                    CustomButton("Get to Know Us", () => AboutUsView())
                   ],
                 ),
               ),

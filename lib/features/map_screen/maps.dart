@@ -191,6 +191,12 @@ class _MapScreenState extends State<MapWidget> {
     prefs.setDouble('selected_latitude', point.latitude);
     prefs.setDouble('selected_longitude', point.longitude);
   }
+
+  @override
+  void dispose() {
+    getCureentLocation();
+    super.dispose();
+  }
 }
 
 /*Future<void> _getSavedLocation() async {
