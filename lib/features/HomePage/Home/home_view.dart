@@ -260,7 +260,7 @@ Widget appointment() {
                               fontWeight: FontWeight.bold,
                               color: ColorsManger.white),
                         ),
-                        CustomButton("Book now",()=>Text("data"))
+                        CustomButton("Book now",(){})
                       ],
                     ),
                   ),
@@ -323,7 +323,7 @@ Widget Promotions() {
                             fontSize: 20.spMin,
                             fontWeight: FontWeight.bold,
                             color: ColorsManger.white)),
-                    CustomButton("Join now",()=>AboutUsView())
+                    CustomButton("Join now",(){})
                   ],
                 ),
               ),
@@ -375,7 +375,7 @@ Widget About_us() {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CustomButton("Get to Know Us",()=>AboutUsView())
+                    CustomButton("Get to Know Us",()=>Get.to(()=>AboutUsView()))
                   ],
                 ),
               ),
