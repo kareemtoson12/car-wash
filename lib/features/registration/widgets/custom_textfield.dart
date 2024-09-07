@@ -27,15 +27,15 @@ class CustomTextField extends StatelessWidget {
       keyboardType: TextInputType.visiblePassword,
       obscureText: obscureText,
       decoration: InputDecoration(
-        // labelText: hintText,
-        // labelStyle: StylesManager.bodyText3,
+        labelText: hintText,
+        labelStyle: StylesManager.bodyText3,
         suffixIcon: obscureText ? const Icon(Icons.remove_red_eye) : null,
         border: OutlineInputBorder(
           borderSide: BorderSide(color: ColorsManger.grey),
           borderRadius: BorderRadius.circular(screenWidth * 0.04),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide:  BorderSide(color: ColorsManger.grey),
+          borderSide: BorderSide(color: ColorsManger.grey),
           borderRadius: BorderRadius.circular(screenWidth * 0.04),
         ),
         focusedBorder: OutlineInputBorder(

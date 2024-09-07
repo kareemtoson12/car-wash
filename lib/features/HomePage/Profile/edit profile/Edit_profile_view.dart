@@ -5,7 +5,6 @@ import 'package:clean_wash/core/widgets/NotificationButton.dart';
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
 import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile_controller.dart';
 import 'package:clean_wash/features/registration/widgets/custom_buttom.dart';
-import 'package:clean_wash/test.dart';
 import 'package:clean_wash/features/registration/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';

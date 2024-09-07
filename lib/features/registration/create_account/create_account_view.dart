@@ -78,7 +78,7 @@ class CreateAccountView extends StatelessWidget {
                       controller: emailController,
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
-                      hintText: 'Password',
+                      hintText: 'Email',
                     
                     ),
                     SizedBox(height: screenHeight * 0.030),
@@ -104,6 +104,7 @@ class CreateAccountView extends StatelessWidget {
                           context,
                           emailController.text,
                           passwordController.text,
+                          fullNameController.text,
                         );
                       },
                       screenWidth: screenWidth,

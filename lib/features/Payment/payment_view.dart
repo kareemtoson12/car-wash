@@ -62,7 +62,7 @@ class _ExampleScreenState extends State<PaymentView> {
               ),
             ),
           ),
-          NextButton(HomeView()),
+          NextButton('Next', HomeView()),
         ],
       ),
     );
