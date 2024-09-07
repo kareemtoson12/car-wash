@@ -3,6 +3,7 @@ import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile
 import 'package:clean_wash/features/HomePage/Services/Services_view.dart';
 import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
 import 'package:clean_wash/features/registration/signin/signin_controller.dart';
+import 'package:clean_wash/features/registration/widgets/custom_buttom.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -174,7 +175,9 @@ Widget CarTypeWidgets() {
                       fontSize: 20.spMin,
                       fontWeight: FontWeight.bold)),
               Spacer(),
-              CustomButton("Change", () => Text("Change")),
+              CustomButton("Change",(){
+                print("object");
+              }),
               SizedBox(
                 width: 20.w,
               )

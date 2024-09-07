@@ -37,8 +37,10 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_stripe: ^11.0.0
   flutter_svg: ^2.0.10+1
+  fluttertoast: ^8.2.8
   font_awesome_flutter: ^10.7.0
   get: ^4.6.6
+
   
   google_sign_in: ^6.2.1
   http: ^1.2.2

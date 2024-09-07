@@ -13,7 +13,6 @@ import 'package:get/get_core/src/get_main.dart';
 class ServicesView extends StatelessWidget {
   ServicesView({super.key});
 
-  // final ServiceController=Get.put(ServicesController());
   final ServicesController serviceController = Get.put(ServicesController());
 
   @override

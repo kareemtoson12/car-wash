@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 class EditProfileController extends GetxController{
+  static EditProfileController get instance=>Get.find();
   var Fullname;
   var Email;
   var Password;
@@ -11,6 +12,8 @@ class EditProfileController extends GetxController{
     Fullname='Doha ayman';
     Email='dohaayman@gmail.com';
     Password='123123';
+    List x=[Fullname,Email,Password];
+    return x;
   }
 
 

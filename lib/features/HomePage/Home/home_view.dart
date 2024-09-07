@@ -108,7 +108,7 @@ Widget Header() {
         ),
       ),
       Padding(
-        padding: EdgeInsets.fromLTRB(15, 12, 15, 0),
+        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -122,7 +122,7 @@ Widget Header() {
                   "Dohaa aymann",
                   style: TextStyle(
                       color: ColorsManger.white,
-                      fontSize: 16.sp,
+                      fontSize: 16.spMin,
                       fontWeight: FontWeight.bold),
                 ),
                 IconButton(
@@ -139,7 +139,7 @@ Widget Header() {
               style: TextStyle(
                   color: ColorsManger.white,
                   fontWeight: FontWeight.bold,
-                  fontSize:30.sp),
+                  fontSize:30.spMin),
             ),
             SizedBox(
               height: 10,
