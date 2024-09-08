@@ -1,10 +1,13 @@
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
 import 'package:clean_wash/core/widgets/selection_widget.dart';
+import 'package:clean_wash/core/widgets/stepper/stepper_controller.dart';
+import 'package:clean_wash/core/widgets/stepper/stepper_view.dart';
 import 'package:clean_wash/features/map_screen/maps.dart';
 
 import 'package:clean_wash/features/pick_date_and_time/controller.dart';
 import 'package:clean_wash/features/pick_date_and_time/widgets/time_selection_widget.dart';
+import 'package:clean_wash/features/registration/signin/signin_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +16,7 @@ import 'package:table_calendar/table_calendar.dart';
 class PickDateAndTime extends StatelessWidget {
   PickDateAndTime({super.key});
 
-  //final StepperController stepperController = Get.put(StepperController());
+  final StepperController stepperController = Get.put(StepperController());
   final CalendarController calendarController = Get.put(CalendarController());
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,6 @@ class PickDateAndTime extends StatelessWidget {
               children: [
                 ScreenTitleWidget('pick date and time'),
                 const Divider(),
-                //Expanded(child: StepperView()),
                 SelectionWidget('Select your date and time',
                     'select days when wash is available'),
                 Obx(() => TableCalendar(
@@ -52,7 +54,7 @@ class PickDateAndTime extends StatelessWidget {
                       },
                       calendarStyle: const CalendarStyle(
                         selectedDecoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: Colors.orange,
                           shape: BoxShape.circle,
                         ),
                         todayDecoration: BoxDecoration(
@@ -70,7 +72,12 @@ class PickDateAndTime extends StatelessWidget {
                       ),
                     )),
                 TimeSelectionWidget(),
-                NextButton(MapWidget(), ''),
+                /*    NextButton(
+                    'Next',
+                    const MapWidget(),
+                    calendarController.setTimeAndDate(
+                        SigninController().emailController.text)), */
+                //StepperView(),
               ],
             ),
           ),

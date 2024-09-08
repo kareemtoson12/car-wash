@@ -27,7 +27,7 @@ class ServicesView extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.fromLTRB(10.w, 0, 10.w, 5.h),
+          padding: EdgeInsets.fromLTRB(10.w, 0, 10.w, 5.h),
           child: Column(
             children: [
               GestureDetector(
@@ -35,11 +35,17 @@ class ServicesView extends StatelessWidget {
                   serviceController.changeService('Standard wash');
                 },
                 child: buildServiceOption(
-                  iconwidget: Icon(Icons.check_circle, color: Colors.blue, size: 18.r),
+                  iconwidget:
+                      Icon(Icons.check_circle, color: Colors.blue, size: 18.r),
                   widget: Image.asset("images/bronze.png", height: 45.h),
                   title: 'Standard wash',
                   price: 15,
-                  features: ['Exterior wash', 'Tyre cleaning', 'Vacuuming', 'Hand drying'],
+                  features: [
+                    'Exterior wash',
+                    'Tyre cleaning',
+                    'Vacuuming',
+                    'Hand drying'
+                  ],
                   value: 'Standard wash',
                 ),
               ),
@@ -52,7 +58,12 @@ class ServicesView extends StatelessWidget {
                   widget: Image.asset("images/silver.png", height: 45.h),
                   title: 'Deluxe wash',
                   price: 45,
-                  features: ['Standard wash', 'Tyre cleaning', 'Engine detailing', 'Hand waxing'],
+                  features: [
+                    'Standard wash',
+                    'Tyre cleaning',
+                    'Engine detailing',
+                    'Hand waxing'
+                  ],
                   value: 'Deluxe wash',
                 ),
               ),
@@ -65,12 +76,17 @@ class ServicesView extends StatelessWidget {
                   widget: Image.asset("images/gold.png", height: 45.h),
                   title: 'Premium wash',
                   price: 95,
-                  features: ['Deluxe wash', 'Full detailing', 'Deep cleaning', 'Headlight restoration'],
+                  features: [
+                    'Deluxe wash',
+                    'Full detailing',
+                    'Deep cleaning',
+                    'Headlight restoration'
+                  ],
                   value: 'Premium wash',
                 ),
               ),
               // SizedBox(height: 20.h), // Adding space to avoid overflow
-              NextButton("Book now", "gotoScreen"),
+              //   NextButton("Book now", "gotoScreen"),
             ],
           ),
         ),
@@ -86,67 +102,80 @@ class ServicesView extends StatelessWidget {
     required List<String> features,
     required String value,
   }) {
-    return Obx((){
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-        side: BorderSide(color: serviceController.selectedService == value ? ColorsManger.accentColor : Colors.grey, width: 2),
-      ),
-      margin: EdgeInsets.only(top: 6.h),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Column(crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+    return Obx(() {
+      return Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+              color: serviceController.selectedService == value
+                  ? ColorsManger.accentColor
+                  : Colors.grey,
+              width: 2),
+        ),
+        margin: EdgeInsets.only(top: 6.h),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  widget,
-                  SizedBox(width: 8.w),
-                  Text(
-                    title,
-                    style: TextStyle(fontSize: 24.spMin, fontWeight: FontWeight.bold),
+                  Row(
+                    children: [
+                      widget,
+                      SizedBox(width: 8.w),
+                      Text(
+                        title,
+                        style: TextStyle(
+                            fontSize: 24.spMin, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(features.length, (index) {
+                      return Row(
+                        children: [
+                          index == 0
+                              ? iconwidget
+                              : Icon(Icons.check_circle,
+                                  color: Colors.blue, size: 18.r),
+                          SizedBox(width: 8.w),
+                          Text(features[index],
+                              style: TextStyle(fontSize: 16.spMin)),
+                        ],
+                      );
+                    }),
                   ),
                 ],
               ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(features.length, (index) {
-                    return Row(
-                      children: [
-                        index==0?iconwidget:Icon(Icons.check_circle, color: Colors.blue, size: 18.r),
-                        SizedBox(width: 8.w),
-                        Text(features[index], style: TextStyle(fontSize: 16.spMin)),
-                      ],
-                    );
-                  }),
-                ),
-              ],
-            ),
-            Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                // Spacer(),
-                Text(
-                  '$price\$',
-                  style: TextStyle(fontSize: 25.spMin, fontWeight: FontWeight.bold, color: Colors.orange),
-                ),
-                Radio<String>(
-                  value: value,
-                  groupValue: serviceController.selectedService.value,
-                  onChanged: (String? newValue) {
-                    if (newValue != null) {
-                      serviceController.changeService(newValue);
-                    }
-                  },
-                ),
-              ],
-            ),
-          ],
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  // Spacer(),
+                  Text(
+                    '$price\$',
+                    style: TextStyle(
+                        fontSize: 25.spMin,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.orange),
+                  ),
+                  Radio<String>(
+                    value: value,
+                    groupValue: serviceController.selectedService.value,
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        serviceController.changeService(newValue);
+                      }
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  });
+      );
+    });
   }
 }

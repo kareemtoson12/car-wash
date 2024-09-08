@@ -11,7 +11,7 @@ class StepperView extends StatelessWidget {
     final StepperController controller = Get.find<StepperController>();
 
     return Padding(
-      padding: EdgeInsets.all(8.0.h),
+      padding: EdgeInsets.all(0.0.h),
       child: Obx(() => Stepper(
             elevation: 0,
             type: StepperType.horizontal,

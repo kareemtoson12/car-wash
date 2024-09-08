@@ -10,24 +10,16 @@ class SplashView extends StatelessWidget {
     Get.put(SplashController());
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Image.asset(
-                    'images/splash.png',
-                    fit: BoxFit.cover, // Makes the image cover the full screen
-                  ),
-                ),
-              ),
-            ),
-          ],
+        body: SafeArea(
+            child: Center(
+      child: SizedBox(
+        width: double.infinity,
+        child: Image.asset(
+          'images/car wash app (4).png',
+          fit: BoxFit.cover,
+          alignment: Alignment.topCenter,
         ),
       ),
-    );
+    )));
   }
 }

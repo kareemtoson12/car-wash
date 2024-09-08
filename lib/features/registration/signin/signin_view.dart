@@ -124,7 +124,7 @@ class SigninView extends StatelessWidget {
                           style: StylesManager.bodyText3,
                         ),
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             Get.to(const CreateAccountView());
                           },
                           child: Text(

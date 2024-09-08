@@ -27,9 +27,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cloud_firestore: ^5.4.0
   cupertino_icons: ^1.0.8
   device_preview: ^1.2.0
-  firebase_auth: ^4.16.0
+  firebase_auth: 5.2.0
+  firebase_core: ^3.4.0
+  firebase_storage: ^12.2.0
   flutter:
     sdk: flutter
   flutter_custom_clippers: ^2.1.0
@@ -40,8 +43,6 @@ dependencies:
   fluttertoast: ^8.2.8
   font_awesome_flutter: ^10.7.0
   get: ^4.6.6
-
-  
   google_sign_in: ^6.2.1
   http: ^1.2.2
   location: ^6.0.2
@@ -51,12 +52,6 @@ dependencies:
 dependency_overrides:
   stripe_android: "9.5.0+1"
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
