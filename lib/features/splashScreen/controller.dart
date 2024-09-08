@@ -1,4 +1,4 @@
-import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
+import 'package:clean_wash/features/pick_date_and_time/view.dart';
 import 'package:clean_wash/features/registration/signin/signin_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -13,7 +13,7 @@ class SplashController extends GetxController {
     Future.delayed(Duration(seconds: 2), () {
       _auth.authStateChanges().listen((User? user) {
         if (user != null) {
-          Get.to(() => NaivebarView());
+          Get.to(() => PickDateAndTime());
         } else {
           Get.to(() => SigninView());
         }

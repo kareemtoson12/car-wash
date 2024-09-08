@@ -2,7 +2,6 @@ import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
 import 'package:clean_wash/core/widgets/selection_widget.dart';
 import 'package:clean_wash/core/widgets/stepper/stepper_controller.dart';
-import 'package:clean_wash/core/widgets/stepper/stepper_view.dart';
 import 'package:clean_wash/features/map_screen/maps.dart';
 
 import 'package:clean_wash/features/pick_date_and_time/controller.dart';
@@ -18,6 +17,7 @@ class PickDateAndTime extends StatelessWidget {
 
   final StepperController stepperController = Get.put(StepperController());
   final CalendarController calendarController = Get.put(CalendarController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,11 +72,11 @@ class PickDateAndTime extends StatelessWidget {
                       ),
                     )),
                 TimeSelectionWidget(),
-                /*    NextButton(
+                NextButton(
                     'Next',
                     const MapWidget(),
                     calendarController.setTimeAndDate(
-                        SigninController().emailController.text)), */
+                        SigninController().emailController.text)),
                 //StepperView(),
               ],
             ),

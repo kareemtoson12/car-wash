@@ -10,6 +10,7 @@ class SplashView extends StatelessWidget {
     Get.put(SplashController());
 
     return Scaffold(
+
         body: SafeArea(
             child: Center(
       child: SizedBox(
@@ -17,7 +18,6 @@ class SplashView extends StatelessWidget {
         child: Image.asset(
           'images/car wash app (4).png',
           fit: BoxFit.cover,
-          alignment: Alignment.topCenter,
         ),
       ),
     )));

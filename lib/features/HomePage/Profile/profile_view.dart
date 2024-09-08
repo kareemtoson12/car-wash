@@ -1,11 +1,9 @@
 import 'package:clean_wash/core/colors_manger.dart';
-import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile_controller.dart';
 import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile_view.dart';
 import 'package:clean_wash/features/HomePage/Profile/profile_controller.dart';
 import 'package:clean_wash/features/HomePage/Services/Services_view.dart';
 import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
 import 'package:clean_wash/features/registration/signin/signin_controller.dart';
-import 'package:clean_wash/features/registration/widgets/custom_buttom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

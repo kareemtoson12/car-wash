@@ -1,5 +1,6 @@
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'signin_view.dart';
@@ -8,10 +9,13 @@ class SigninController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  Future<User?> signInWithEmailAndPassword(String email, String password) async {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  Future<User?> signInWithEmailAndPassword() async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+          email: emailController.text, password: passwordController.text);
       User? user = userCredential.user;
 
       if (user != null) {
@@ -19,7 +23,7 @@ class SigninController extends GetxController {
       }
       return user;
     } catch (e) {
-      Get.snackbar('Error', 'Error during email sign in: $e');
+      print('Error during email sign in: $e');
       return null;
     }
   }
@@ -28,7 +32,7 @@ class SigninController extends GetxController {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
-        Get.snackbar('Error', 'Google sign in aborted by user');
+        print('Google sign in aborted by user');
         return null;
       }
 
@@ -49,7 +53,7 @@ class SigninController extends GetxController {
       }
       return user;
     } catch (e) {
-      Get.snackbar('Error', 'Error during Google sign in: $e');
+      print('Error during Google sign in: $e');
       return null;
     }
   }
@@ -58,9 +62,17 @@ class SigninController extends GetxController {
     try {
       await _googleSignIn.signOut();
       await _auth.signOut();
-      Get.offAll(() => SigninView());
+      print("User successfully signed out");
+      Get.offAll(() => const SigninView());
     } catch (e) {
-      Get.snackbar('Error', 'Error signing out: $e');
+      print('Error signing out: $e');
     }
+  }
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
   }
 }

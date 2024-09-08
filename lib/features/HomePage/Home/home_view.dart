@@ -55,7 +55,7 @@ class HomeView extends StatelessWidget {
                   children: [
                     Header(),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(15, 12, 15, 0),
+                      padding: const EdgeInsets.fromLTRB(15, 12, 15, 0),
                       child: Column(
                         children: [
                           SizedBox(
@@ -63,15 +63,15 @@ class HomeView extends StatelessWidget {
                           ),
                           Features_services(),
                           appointment(),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Promotions(),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           About_us(),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                         ],
@@ -114,11 +114,11 @@ Widget Header() {
             )),
       ),
       Padding(
-        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Row(
@@ -147,7 +147,7 @@ Widget Header() {
                   fontWeight: FontWeight.bold,
                   fontSize: 30.spMin),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -206,7 +206,7 @@ Widget Features_services() {
                     "${features[i]['title']}",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16.spMin,
+                        fontSize: 12.spMin,
                         color: ColorsManger.darkblue),
                   )
                 ],
@@ -228,7 +228,7 @@ Widget appointment() {
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: ColorsManger.lightblack)),
-      SizedBox(
+      const SizedBox(
         height: 10,
       ),
       Container(
@@ -245,7 +245,7 @@ Widget appointment() {
                 children: [
                   Container(
                     width: 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.blueGrey,
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(15),
@@ -255,7 +255,7 @@ Widget appointment() {
                         )),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(15, 12, 0, 12),
+                    padding: const EdgeInsets.fromLTRB(15, 12, 0, 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -279,10 +279,10 @@ Widget appointment() {
               width: 140,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       image: AssetImage("images/car wash 3.jpg"),
                       fit: BoxFit.cover)),
-              child: SizedBox(),
+              child: const SizedBox(),
             ),
           ],
         ),
@@ -300,7 +300,7 @@ Widget Promotions() {
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: ColorsManger.lightblack)),
-      SizedBox(
+      const SizedBox(
         height: 10,
       ),
       Container(
@@ -309,7 +309,7 @@ Widget Promotions() {
         decoration: BoxDecoration(
           color: ColorsManger.darkblue,
           borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(
+          image: const DecorationImage(
             image: AssetImage("images/offers2.jpg"),
             fit: BoxFit.cover,
           ),
@@ -320,7 +320,7 @@ Widget Promotions() {
           children: [
             Expanded(
               child: Container(
-                padding: EdgeInsets.fromLTRB(15, 12, 0, 12),
+                padding: const EdgeInsets.fromLTRB(15, 12, 0, 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -341,10 +341,10 @@ Widget Promotions() {
               decoration: BoxDecoration(
                   color: Colors.yellow,
                   borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       image: AssetImage("images/offers.jpg"),
                       fit: BoxFit.cover)),
-              child: SizedBox(),
+              child: const SizedBox(),
             ),
           ],
         ),
@@ -362,7 +362,7 @@ Widget About_us() {
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: ColorsManger.lightblack)),
-      SizedBox(
+      const SizedBox(
         height: 10,
       ),
       Container(
@@ -371,13 +371,13 @@ Widget About_us() {
         decoration: BoxDecoration(
             color: ColorsManger.darkblue,
             borderRadius: BorderRadius.circular(15),
-            image: DecorationImage(
+            image: const DecorationImage(
                 image: AssetImage("images/img_1.png"), fit: BoxFit.cover)),
         child: Row(
           children: [
             Expanded(
               child: Container(
-                padding: EdgeInsets.fromLTRB(15, 12, 0, 12),
+                padding: const EdgeInsets.fromLTRB(15, 12, 0, 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
