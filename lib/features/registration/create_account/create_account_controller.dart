@@ -4,35 +4,45 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CreateAccountController {
-   static FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance; // إضافة Firestore
+class CreateAccountController extends GetxController {
+  static FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<User?> signUpWithEmailAndPassword(
-    BuildContext context, String email, String password, String fullName) async {
-  try {
-    UserCredential userCredential = await _auth
-        .createUserWithEmailAndPassword(email: email, password: password);
-    User? user = userCredential.user;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController repeatPasswordController = TextEditingController();
 
-    if (user != null) {
-      if (user.email != null) {
-        await _firestore.collection('Users').doc(user.email).set({
-          'email': user.email,
-          'password':password,
-          'fullName' : fullName,
-          'createdAt': FieldValue.serverTimestamp(),
-        });
-        _auth.currentUser!.updateDisplayName(fullName);
-        Get.to(NaivebarView());
-      } else {
-        print("Error: User email is null.");
+  Future<User?> signUpWithEmailAndPassword() async {
+    try {
+      if (passwordController.text != repeatPasswordController.text) {
+        Get.snackbar('Error', 'Passwords do not match');
+        return null;
       }
+
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(
+              email: emailController.text, password: passwordController.text);
+      User? user = userCredential.user;
+
+      if (user != null) {
+        if (user.email != null) {
+          await _firestore.collection('Users').doc(user.email).set({
+            'email': user.email,
+            'password': passwordController.text,
+            'fullName': fullNameController.text,
+            'createdAt': FieldValue.serverTimestamp(),
+          });
+          _auth.currentUser!.updateDisplayName(fullNameController.text);
+          Get.to(() => NaivebarView());
+        } else {
+          print("Error: User email is null.");
+        }
+      }
+      return user;
+    } catch (e) {
+      print('Error during email sign up: $e');
+      return null;
     }
-    return user;
-  } catch (e) {
-    print('Error during email sign up: $e');
-    return null;
   }
-}
 }

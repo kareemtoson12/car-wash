@@ -1,16 +1,17 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/styels_manger.dart';
 import 'package:clean_wash/features/registration/create_account/create_account_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../widgets/custom_buttom.dart';
 import '../widgets/custom_textfield.dart';
 import 'signin_controller.dart';
 
 class SigninView extends StatelessWidget {
-  const SigninView({super.key});
+  final SigninController controller = Get.put(SigninController());
+
+  SigninView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +37,15 @@ class SigninView extends StatelessWidget {
                     top: screenHeight * 0.15,
                     bottom: screenHeight * 0.05,
                   ),
-                  child: SizedBox(
-                    width: screenWidth,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Sign In to your account',
-                            style: StylesManager.headline3),
-                        Text('Welcome back!', style: StylesManager.bodyText5),
-                        Text('Select method to log in',
-                            style: StylesManager.bodyText5),
-                      ],
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Sign In to your account',
+                          style: StylesManager.headline3),
+                      Text('Welcome back!', style: StylesManager.bodyText5),
+                      Text('Select method to log in',
+                          style: StylesManager.bodyText5),
+                    ],
                   ),
                 ),
               ),
@@ -86,8 +84,7 @@ class SigninView extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.030),
                     CustomButtom(
                       onTap: () {
-                        SigninController().signInWithEmailAndPassword(
-                          context,
+                        controller.signInWithEmailAndPassword(
                           emailController.text,
                           passwordController.text,
                         );
@@ -105,12 +102,17 @@ class SigninView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Image.asset(
-                          height: 40.h,
-                          'images/google_logo.svg.png',
+                        GestureDetector(
+                          onTap: () {
+                            controller.signInWithGoogle();
+                          },
+                          child: Image.asset(
+                            height: 40,
+                            'images/google_logo.svg.png',
+                          ),
                         ),
                         SvgPicture.asset(
-                          height: 40.h,
+                          height: 40,
                           'images/facebook_logo.svg',
                         ),
                       ],
@@ -125,7 +127,7 @@ class SigninView extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(const CreateAccountView());
+                            Get.to(CreateAccountView());
                           },
                           child: Text(
                             'Sign Up',
