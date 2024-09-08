@@ -1,9 +1,12 @@
 import 'package:clean_wash/core/colors_manger.dart';
+import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile_controller.dart';
 import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile_view.dart';
+import 'package:clean_wash/features/HomePage/Profile/profile_controller.dart';
 import 'package:clean_wash/features/HomePage/Services/Services_view.dart';
 import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
 import 'package:clean_wash/features/registration/signin/signin_controller.dart';
 import 'package:clean_wash/features/registration/widgets/custom_buttom.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,9 +27,20 @@ var settings_options = [
     'title': 'Edit Profile',
     'color': ColorsManger.darkblue,
     'function': () {
-      Get.to(()=>EditProfileView());
+      Get.to(() => EditProfileView());
     }
   },
+  // {
+  //   'icon': FaIcon(
+  //     FontAwesomeIcons.lock,
+  //     color: Colors.white,
+  //   ),
+  //   'title': 'Change Password',
+  //   'color': ColorsManger.darkblue,
+  //   'function': () {
+  //     Get.to(() => EditProfileView());
+  //   }
+  // },
   {
     'icon': FaIcon(
       FontAwesomeIcons.creditCard,
@@ -36,7 +50,7 @@ var settings_options = [
     'title': 'Payment information',
     'color': ColorsManger.darkblue,
     'function': () {
-      Get.to(()=>ServicesView());
+      Get.to(() => ServicesView());
     }
   },
   {
@@ -99,6 +113,7 @@ class ProfileView extends StatelessWidget {
 }
 
 Widget HeaderWidgets() {
+  var ProfileView = Get.put(profileController());
   return Column(
     children: [
       Divider(),
@@ -107,29 +122,45 @@ Widget HeaderWidgets() {
         child: Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage("images/promotions.jpg"),
+              backgroundImage: AssetImage("images/unkown.png"),
               radius: 40.r,
             ),
             SizedBox(
               width: 10.w,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Dohaa aymann",
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
-                ),
-                Text(
-                  "personal info",
-                  style: TextStyle(
-                    color: Colors.black38,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            )
+            FutureBuilder(
+                future: ProfileView.get_data(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    print("\\\n\n\n${snapshot.error}\n\n");
+                    return Center(
+                      child: Text("Error: ${snapshot.error}"),
+                    );
+                  } else if (!snapshot.hasData || snapshot.data == null) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasData) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          snapshot.data.data()?['fullName'],
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20.sp),
+                        ),
+                        Text(
+                          snapshot.data.data()?['email'],
+                          style: TextStyle(
+                            color: Colors.black38,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                  return Container();
+                })
           ],
         ),
       ),
@@ -175,8 +206,9 @@ Widget CarTypeWidgets() {
                       fontSize: 20.spMin,
                       fontWeight: FontWeight.bold)),
               Spacer(),
-              CustomButton("Change",(){
-                print("object");
+              CustomButton("Change", () {
+                FirebaseAuth _auth = FirebaseAuth.instance;
+                print("${_auth.currentUser!.email}");
               }),
               SizedBox(
                 width: 20.w,

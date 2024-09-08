@@ -1,5 +1,10 @@
 import 'dart:ui';
 
+import 'package:clean_wash/features/HomePage/Home/home_Controller.dart';
+import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_controller.dart';
+import 'package:clean_wash/features/HomePage/Profile/profile_controller.dart';
+import 'package:clean_wash/features/HomePage/Services/Services_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -84,6 +89,7 @@ class HomeView extends StatelessWidget {
 }
 
 Widget Header() {
+  var controller = Get.put(Naivebar_Controller());
   return Stack(
     children: [
       ClipPath(
@@ -119,7 +125,7 @@ Widget Header() {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Dohaa aymann",
+                  "WELCOME  ${controller.UserName}",
                   style: TextStyle(
                       color: ColorsManger.white,
                       fontSize: 16.spMin,

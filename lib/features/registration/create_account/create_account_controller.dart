@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CreateAccountController {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+   static FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance; // إضافة Firestore
 
   Future<User?> signUpWithEmailAndPassword(
@@ -19,9 +19,11 @@ class CreateAccountController {
       if (user.email != null) {
         await _firestore.collection('Users').doc(user.email).set({
           'email': user.email,
+          'password':password,
           'fullName' : fullName,
           'createdAt': FieldValue.serverTimestamp(),
         });
+        _auth.currentUser!.updateDisplayName(fullName);
         Get.to(NaivebarView());
       } else {
         print("Error: User email is null.");
