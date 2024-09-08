@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
-        home:SplashView(),
-        // home:CreateAccountView(),
+        //home:SplashView(),
+         home:CreateAccountView(),
       ),
     );
   }
