@@ -1,5 +1,6 @@
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
 import 'package:clean_wash/features/onboarding/view.dart';
+import 'package:clean_wash/features/registration/car_type/car_type_view.dart';
 import 'package:clean_wash/features/registration/create_account/create_account_view.dart';
 import 'package:clean_wash/features/registration/signin/signin_view.dart';
 import 'package:clean_wash/features/splashScreen/view.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         //home:SplashView(),
-         home:CreateAccountView(),
+         home: CarTypeView(),
       ),
     );
   }

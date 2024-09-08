@@ -23,6 +23,14 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.obscureText;
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -30,24 +38,21 @@ class _CustomTextFieldState extends State<CustomTextField> {
       style: StylesManager.bodyText3,
       cursorColor: ColorsManger.grey,
       keyboardType: TextInputType.visiblePassword,
-      obscureText: widget.obscureText,
+      obscureText: _obscureText,
       decoration: InputDecoration(
         labelText: widget.hintText,
         labelStyle: StylesManager.bodyText3,
         suffixIcon: widget.obscureText
             ? IconButton(
                 onPressed: () {
-                  if (widget.obscureText) {
-                    setState(() {
-                      widget.obscureText == false;
-                    });
-                  } else {
-                    setState(() {
-                      widget.obscureText == true;
-                    });
-                  }
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
                 },
-                icon: const Icon(Icons.remove_red_eye))
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                ),
+              )
             : null,
         border: OutlineInputBorder(
           borderSide: BorderSide(color: ColorsManger.grey),
