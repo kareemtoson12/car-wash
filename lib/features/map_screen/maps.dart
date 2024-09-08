@@ -91,7 +91,7 @@ class _MapScreenState extends State<MapWidget> {
                           ),
                   ),
                 ),
-                NextButton(null),
+                NextButton("Next",null),
               ],
             ),
           ),

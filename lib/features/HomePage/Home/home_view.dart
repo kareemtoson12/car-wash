@@ -39,43 +39,45 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Header(),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(15, 12, 15, 0),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        Features_services(),
-                        appointment(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Promotions(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        About_us(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Container(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Header(),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(15, 12, 15, 0),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Features_services(),
+                          appointment(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Promotions(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          About_us(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -106,7 +108,7 @@ Widget Header() {
             )),
       ),
       Padding(
-        padding: EdgeInsets.fromLTRB(15, 12, 15, 0),
+        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -120,7 +122,7 @@ Widget Header() {
                   "Dohaa aymann",
                   style: TextStyle(
                       color: ColorsManger.white,
-                      fontSize: 16.sp,
+                      fontSize: 16.spMin,
                       fontWeight: FontWeight.bold),
                 ),
                 IconButton(
@@ -137,7 +139,7 @@ Widget Header() {
               style: TextStyle(
                   color: ColorsManger.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 30.sp),
+                  fontSize: 30.spMin),
             ),
             SizedBox(
               height: 10,
@@ -175,7 +177,7 @@ Widget Features_services() {
     children: [
       Text("Featured services",
           style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 16.spMin,
               fontWeight: FontWeight.bold,
               color: Colors.black38)),
       Container(
@@ -187,7 +189,7 @@ Widget Features_services() {
           itemCount: features.length,
           itemBuilder: (context, i) {
             return Padding(
-              padding: EdgeInsets.all(5.0.w),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   CircleAvatar(
@@ -259,7 +261,7 @@ Widget appointment() {
                               fontWeight: FontWeight.bold,
                               color: ColorsManger.white),
                         ),
-                        CustomButton("Book now", () => Text("data"))
+                        CustomButton("Book now", () {})
                       ],
                     ),
                   ),
@@ -322,7 +324,7 @@ Widget Promotions() {
                             fontSize: 20.spMin,
                             fontWeight: FontWeight.bold,
                             color: ColorsManger.white)),
-                    CustomButton("Join now", () => AboutUsView())
+                    CustomButton("Join now", () {})
                   ],
                 ),
               ),
@@ -374,7 +376,8 @@ Widget About_us() {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CustomButton("Get to Know Us", () => AboutUsView())
+                    CustomButton(
+                        "Get to Know Us", () => Get.to(() => AboutUsView()))
                   ],
                 ),
               ),

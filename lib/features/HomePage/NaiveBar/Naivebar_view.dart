@@ -1,4 +1,5 @@
 
+import 'package:clean_wash/features/HomePage/Services/Services_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -9,12 +10,12 @@ import '../Home/home_view.dart';
 import '../Profile/profile_view.dart';
 import 'Naivebar_controller.dart';
 
-class HomePage extends StatelessWidget {
+ class NaivebarView extends StatelessWidget {
   final _controller = Get.put(Naivebar_Controller());
 
   static List<Widget> _widgetOptions = <Widget>[
     HomeView(),
-    Text("Services"),
+    ServicesView(),
     ProfileView()
   ];
 

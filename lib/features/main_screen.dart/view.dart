@@ -1,5 +1,6 @@
 import 'package:clean_wash/features/HomePage/Home/home_view.dart';
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
+import 'package:clean_wash/features/Payment/payment_view.dart';
 import 'package:clean_wash/features/onboarding/view.dart';
 import 'package:clean_wash/features/registration/signin/signin_view.dart';
 import 'package:clean_wash/features/splashScreen/view.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
-        home: HomeView(),
+        home: PaymentView(),
       ),
     );
   }

@@ -70,7 +70,7 @@ class PickDateAndTime extends StatelessWidget {
                       ),
                     )),
                 TimeSelectionWidget(),
-                NextButton(MapWidget()),
+                NextButton(MapWidget(), ''),
               ],
             ),
           ),

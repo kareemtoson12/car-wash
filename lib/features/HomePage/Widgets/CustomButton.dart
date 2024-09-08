@@ -5,11 +5,9 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../core/colors_manger.dart';
 import '../Home/AboutUsScreen/AboutUs_view.dart';
 
-Widget CustomButton(var name, Widget Function() gotopage) {
+Widget CustomButton(var name,ontap) {
   return ElevatedButton(
-      onPressed: () {
-        Get.to(() => gotopage());
-      },
+      onPressed:ontap,
       style: ElevatedButton.styleFrom(backgroundColor: ColorsManger.orange),
       child: Text(
         "$name",
