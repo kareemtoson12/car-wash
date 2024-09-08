@@ -20,7 +20,7 @@ class SplashView extends StatelessWidget {
                   width: double.infinity,
                   child: Image.asset(
                     'images/splash.png',
-                    fit: BoxFit.cover, // Makes the image cover the full screen
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),

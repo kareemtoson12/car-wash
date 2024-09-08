@@ -1,11 +1,11 @@
-import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
 import 'package:clean_wash/features/registration/car_type/car_type_controller.dart';
+import 'package:clean_wash/features/registration/signin/signin_controller.dart';
+import 'package:clean_wash/features/registration/widgets/custom_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../core/colors_manger.dart';
 import '../../../core/styels_manger.dart';
-import '../../../core/widgets/NextButton.dart';
 
 class CarTypeView extends StatelessWidget {
   CarTypeView({super.key});
@@ -68,7 +68,7 @@ class CarTypeView extends StatelessWidget {
                           },
                           child: buildServiceOption(
                             carImage: 'images/coupe.png',
-                            carName: 'Coupe', 
+                            carName: 'Coupe',
                             value: 'Coupe',
                           ),
                         ),
@@ -123,7 +123,14 @@ class CarTypeView extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 20.h),
-                        NextButton("Submit", NaivebarView()),
+                        CustomButtom(
+                          text: 'Submit',
+                          screenWidth: screenWidth,
+                          screenHeight: screenHeight,
+                          onTap: () async {
+                            carTypeController.saveCarType();
+                          },
+                        ),
                       ],
                     ),
                   ],
@@ -146,6 +153,7 @@ class CarTypeView extends StatelessWidget {
         final isSelected = carTypeController.selectedCarType.value == value;
         return Container(
           padding: EdgeInsets.all(10.r),
+          margin: EdgeInsets.all(10.r),
           decoration: BoxDecoration(
             border: Border.all(
                 width: isSelected ? 2.w : 1.w, color: ColorsManger.darkblue),
@@ -172,7 +180,7 @@ class CarTypeView extends StatelessWidget {
                 isSelected ? Icons.check_circle : Icons.radio_button_unchecked,
                 color: isSelected ? ColorsManger.darkblue : Colors.grey,
                 size: 24.r,
-              ), 
+              ),
             ],
           ),
         );

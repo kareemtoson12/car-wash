@@ -19,8 +19,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
-        //home:SplashView(),
-         home: CarTypeView(),
+        home:SplashView(),
       ),
     );
   }

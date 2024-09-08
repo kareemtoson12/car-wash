@@ -1,4 +1,5 @@
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
+import 'package:clean_wash/features/registration/car_type/car_type_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +35,7 @@ class CreateAccountController extends GetxController {
             'createdAt': FieldValue.serverTimestamp(),
           });
           _auth.currentUser!.updateDisplayName(fullNameController.text);
-          Get.to(() => NaivebarView());
+          Get.to(() => CarTypeView());
         } else {
           print("Error: User email is null.");
         }
