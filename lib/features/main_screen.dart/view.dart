@@ -13,12 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ScreenUtilInit(
+    return  ScreenUtilInit(
       designSize: Size(360, 690),
       child: GetMaterialApp(
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
-        home: CreateAccountView(),
+        home:SplashView(),
+        // home:CreateAccountView(),
       ),
     );
   }
