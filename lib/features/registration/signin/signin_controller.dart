@@ -1,4 +1,5 @@
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
+import 'package:clean_wash/features/HomePage/Profile/profile_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,8 @@ class SigninController extends GetxController {
       User? user = userCredential.user;
 
       if (user != null) {
+        final ProfileContr = Get.find<profileController>();
+        ProfileContr.get_data();
         Get.off(() => NaivebarView());
       }
       return user;

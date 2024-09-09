@@ -1,3 +1,4 @@
+import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
 import 'package:clean_wash/features/pick_date_and_time/view.dart';
 import 'package:clean_wash/features/pick_date_and_time/widgets/time_selection_widget.dart';
 import 'package:clean_wash/features/registration/signin/signin_view.dart';
@@ -16,7 +17,8 @@ class SplashController extends GetxController {
     Future.delayed(Duration(seconds: 2), () {
       _auth.authStateChanges().listen((User? user) {
         if (user != null) {
-          Get.to(() =>MapWidget());
+          // Get.to(() =>MapWidget());
+          Get.to(() =>NaivebarView());
         } else {
           Get.to(() => SigninView());
         }

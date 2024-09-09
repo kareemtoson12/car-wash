@@ -4,6 +4,9 @@ import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/NotificationButton.dart';
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_controller.dart';
 import 'package:clean_wash/features/HomePage/Services/Services_controller.dart';
+import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
+import 'package:clean_wash/features/pick_date_and_time/view.dart';
+import 'package:clean_wash/features/pick_date_and_time/widgets/time_selection_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +35,7 @@ class ServicesView extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  serviceController.changeService('Standard wash');
+                  serviceController.changeService('Standard wash','15');
                 },
                 child: buildServiceOption(
                   iconwidget:
@@ -51,7 +54,7 @@ class ServicesView extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  serviceController.changeService('Deluxe wash');
+                  serviceController.changeService('Deluxe wash','45');
                 },
                 child: buildServiceOption(
                   iconwidget: Image.asset("images/bronze.png", height: 20.h),
@@ -69,7 +72,7 @@ class ServicesView extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  serviceController.changeService('Premium wash');
+                  serviceController.changeService('Premium wash','95');
                 },
                 child: buildServiceOption(
                   iconwidget: Image.asset("images/silver.png", height: 20.h),
@@ -85,8 +88,10 @@ class ServicesView extends StatelessWidget {
                   value: 'Premium wash',
                 ),
               ),
-              // SizedBox(height: 20.h), // Adding space to avoid overflow
-              //   NextButton("Book now", "gotoScreen"),
+              // SizedBox(height:5.h),
+              NextButton('Book now',
+                  PickDateAndTime(Services:serviceController.selectedService.value,
+                Price:serviceController.ServicesPrice.value,),(){})
             ],
           ),
         ),
@@ -166,7 +171,7 @@ class ServicesView extends StatelessWidget {
                     groupValue: serviceController.selectedService.value,
                     onChanged: (String? newValue) {
                       if (newValue != null) {
-                        serviceController.changeService(newValue);
+                        serviceController.changeService(newValue,price);
                       }
                     },
                   ),
