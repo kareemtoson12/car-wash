@@ -3,6 +3,7 @@ import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile
 import 'package:clean_wash/features/HomePage/Profile/profile_controller.dart';
 import 'package:clean_wash/features/HomePage/Services/Services_view.dart';
 import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
+import 'package:clean_wash/features/registration/car_type/car_type_view.dart';
 import 'package:clean_wash/features/registration/signin/signin_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +17,8 @@ import '../../../core/widgets/NotificationButton.dart';
 import '../../map_screen/maps.dart';
 import '../../map_screen/view.dart';
 
+var Controller = Get.put(profileController());
+var x = profileController();
 var settings_options = [
   {
     'icon': FaIcon(
@@ -94,77 +97,63 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text("Profile", style: StylesManager.titleText),
           centerTitle: true,
           actions: [NotificationButton()],
         ),
         body: SingleChildScrollView(
           child: Container(
-            // height:Screenheight-Appbarheight!,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [HeaderWidgets(), CarTypeWidgets(), SettingsWidget()],
+              children: [HeaderWidgets(context), CarTypeWidgets(), SettingsWidget()],
             ),
           ),
         ));
   }
 }
 
-Widget HeaderWidgets() {
-  var ProfileView = Get.put(profileController());
-  return Column(
+Widget HeaderWidgets(BuildContext context) {
+  return  Obx(() {
+    return Column(
     children: [
       Divider(),
       RPadding(
-        padding: EdgeInsets.all(10.r),
-        child: Row(
-          children: [
+          padding: EdgeInsets.all(10.r),
+          child: Row(children: [
             CircleAvatar(
               backgroundImage: AssetImage("images/unkown.png"),
-              radius: 40.r,
+              // radius:30.r,
             ),
             SizedBox(
               width: 10.w,
             ),
-            FutureBuilder(
-                future: ProfileView.get_data(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    print("\\\n\n\n${snapshot.error}\n\n");
-                    return Center(
-                      child: Text("Error: ${snapshot.error}"),
-                    );
-                  } else if (!snapshot.hasData || snapshot.data == null) {
-                    return CircularProgressIndicator();
-                  } else if (snapshot.hasData) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          snapshot.data.data()?['fullName'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20.sp),
-                        ),
-                        Text(
-                          snapshot.data.data()?['email'],
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    );
-                  }
-                  return Container();
-                })
-          ],
-        ),
-      ),
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    Controller.userName.value,
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
+                  ),
+                  Text(
+                    Controller.userEmail.value,
+                    style: TextStyle(
+                      color: Colors.black38,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],),
+            Spacer(),
+            !Controller.isVerify.value?Align(alignment:Alignment.bottomRight,child: CustomButton("Verify Email", (){
+              Controller.Verify_Account(context);
+
+            })):SizedBox.shrink(),
+
+          ])),
       Divider(),
     ],
-  );
+  ); });
 }
 
 Widget CarTypeWidgets() {
@@ -186,37 +175,82 @@ Widget CarTypeWidgets() {
           decoration: BoxDecoration(
               border: Border.all(width: 1.w, color: Colors.black12),
               borderRadius: BorderRadius.all(Radius.circular(10.r))),
-          child: Row(
-            children: [
-              SizedBox(
-                width: 20.w,
-              ),
-              Image.asset(
-                "images/cartype.png",
-                height: 50.h,
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Text("Coupe",
-                  style: TextStyle(
-                      color: ColorsManger.darkblue,
-                      fontSize: 20.spMin,
-                      fontWeight: FontWeight.bold)),
-              Spacer(),
-              CustomButton("Change", () {
-                FirebaseAuth _auth = FirebaseAuth.instance;
-                print("${_auth.currentUser!.email}");
-              }),
-              SizedBox(
-                width: 20.w,
-              )
-            ],
+          child: Obx(
+            () {
+              print("object");
+              return Row(
+                children: [
+                  SizedBox(
+                    width: 20.w,
+                  ),
+                  Car_Type(),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Text("${Controller.carType.value}",
+                      style: TextStyle(
+                          color: ColorsManger.darkblue,
+                          fontSize: 20.spMin,
+                          fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  CustomButton("Change", () {
+                    FirebaseAuth _auth = FirebaseAuth.instance;
+                    print("${_auth.currentUser!.email}");
+                    // print("${Controller.carType}");
+                    print("${Controller.isVerify.value}");
+                    print("${_auth.currentUser!.emailVerified}");
+                    // Get.to(() => CarTypeView());
+                  }),
+                  SizedBox(
+                    width: 20.w,
+                  )
+                ],
+              );
+            },
           ),
         )
       ],
     ),
   );
+}
+
+Widget Car_Type() {
+  print(Controller.carType.value);
+  switch (Controller.carType.value) {
+    case 'Coupe':
+      return Image.asset(
+        "images/coupe.png",
+        height: 30.h,
+      );
+    case 'Sedan':
+      return Image.asset(
+        "images/sedan.png",
+        height: 30.h,
+      );
+    case 'Micro':
+      return Image.asset(
+        "images/micro.png",
+        height: 30.h,
+      );
+    case 'Hatchback':
+      return Image.asset(
+        "images/hatchback.png",
+        height: 30.h,
+      );
+    case 'Sport':
+      return Image.asset(
+        "images/sport.png",
+        height: 30.h,
+      );
+    case 'Van':
+      return Image.asset(
+        "images/van.png",
+        height: 30.h,
+      );
+    default:
+      return const SizedBox
+          .shrink(); // Returns an empty widget if no case matches
+  }
 }
 
 Widget SettingsWidget() {

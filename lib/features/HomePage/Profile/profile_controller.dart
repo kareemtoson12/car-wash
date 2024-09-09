@@ -1,27 +1,127 @@
+import 'dart:async';
+
+import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
 import 'package:clean_wash/features/registration/create_account/create_account_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-class profileController extends GetxController{
-  @override
-  void onInit() {
-    super.onInit();
+
+class profileController extends GetxController {
+  profileController() {
+    print("Constructoooor");
     get_data();
+    Check_Verification();
   }
+
   static FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  String userName='';
-  String userEmail='';
-  String userCar='';
-  Future get_data()async{
-    var data= await _firestore.collection('Users').doc(_auth.currentUser!.email).get();
-    if (data.exists) {
-      userEmail = data.data()?['email'] ?? 'No email'; // Safely retrieve email
-      userName = data.data()?['fullName'] ?? 'No name'; // Safely retrieve email
-      update(); // Notify GetX to rebuild the UI
-    }
-   return data;
+  var userName = ''.obs;
+  var userEmail = ''.obs;
+  var carType = ''.obs;
+  var isVerify = false.obs;
+
+  @override
+  void onInit() {
+    print("proooofilee");
+    super.onInit();
+    get_data();
+    Check_Verification();
   }
 
+  Future get_data() async {
+    var data = await _firestore
+        .collection('Users')
+        .doc(_auth.currentUser!.email)
+        .get();
+    if (data.exists) {
+      userEmail.value =
+          data.data()?['email'] ?? 'No email'; // Safely retrieve email
+      userName.value = data.data()?['fullName'] ?? 'No name';
+      carType.value = data.data()?['carType'] ?? 'No car';
+      print("${carType.value}");
+    }
+    await Check_Verification();
+    return data;
+  }
 
+  Future Check_Verification() async {
+    isVerify.value = await _auth.currentUser!.emailVerified;
+  }
+
+  Future Verify_Account(BuildContext context) async {
+    late BuildContext verifyContext = context;
+    late BuildContext loadingContext = context;
+    try {
+      await _auth.currentUser?.sendEmailVerification().then((value) async {
+        await _auth.currentUser?.reload();
+
+        showDialog(
+            context: loadingContext,
+            builder: (BuildContext loadingContext) {
+              return Container(
+                  color: Colors.black45,
+                  height: double.infinity,
+                  child: const Center(
+                      child: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: CircularProgressIndicator(
+                            color: Colors.black,
+                            strokeWidth: 7,
+                          ))));
+            });
+
+        Timer(const Duration(seconds: 2), () {
+          Navigator.of(context).pop(loadingContext);
+          showDialog(
+              context: verifyContext,
+              builder: (verifyContext) {
+                return AlertDialog(
+                  title: Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.check_circle,color: Colors.blue,size:80,
+                      )),
+                  contentPadding:
+                  EdgeInsets.only(top: 20, bottom: 15, left: 10, right: 10),
+                  content: Text(
+                    "The verification code has been sent to your email",
+                    style: TextStyle(fontSize: 20),
+                    textAlign: TextAlign.center,
+                  ),
+                  actions: [
+                    Center(
+                        child: CustomButton("Done", () {
+                          Navigator.of(verifyContext).pop();
+                        }))
+                  ],
+                );
+              });
+        });
+
+
+      }).catchError((e) {
+        Fluttertoast.showToast(
+            msg: "$e",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      });
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: "$e",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 }

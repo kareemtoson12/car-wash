@@ -13,7 +13,9 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class PickDateAndTime extends StatelessWidget {
-  PickDateAndTime({super.key});
+  String Services;
+  var Price;
+  PickDateAndTime({required this.Services,required this.Price,super.key});
 
   final StepperController stepperController = Get.put(StepperController());
   final CalendarController calendarController = Get.put(CalendarController());

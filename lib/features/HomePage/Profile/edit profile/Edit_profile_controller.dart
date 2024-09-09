@@ -43,8 +43,12 @@ class EditProfileController extends GetxController {
       await _firestore.collection('Users').doc(_auth.currentUser!.email).update({
         'fullName': fullnameController.text,
         // 'password': passwordController.text,
+      }).then((_){
+        _auth.currentUser!.updateDisplayName(fullnameController.text);
+        // _auth.currentUser!.uppdat(fullnameController.text);
       });
-    } catch (e) {
+    } catch (e
+    ) {
       print("Error updating data: $e");
     }
   }

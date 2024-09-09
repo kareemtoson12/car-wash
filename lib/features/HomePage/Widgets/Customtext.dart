@@ -6,7 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 Widget Custom_Textfield(var controller,var hintText,var obscureText,var value){
    return TextFormField(
     controller: controller,
-    style: StylesManager.bodyText3,
+    style: TextStyle(
+      color:hintText=='Email'?Colors.black54:Colors.black
+    ),
     cursorColor: ColorsManger.grey,
     obscureText: obscureText,
     readOnly:hintText=='Email'?true:false,

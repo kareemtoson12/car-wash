@@ -17,10 +17,11 @@ class MyApp extends StatelessWidget {
     return const ScreenUtilInit(
       designSize: Size(360, 690),
       child: GetMaterialApp(
-
           builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
-          home:MapWidget()));
+          // home:MapWidget()
+          home:SplashView()
+      ));
 
   }
 }

@@ -8,15 +8,17 @@ import '../widgets/custom_buttom.dart';
 import '../widgets/custom_textfield.dart';
 
 class CreateAccountView extends StatelessWidget {
-  CreateAccountView({super.key});
-
-  final CreateAccountController _controller = Get.put(CreateAccountController());
+  const CreateAccountView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final screenHeight = mediaQuery.size.height;
     final screenWidth = mediaQuery.size.width;
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    final TextEditingController fullNameController = TextEditingController();
+    final TextEditingController repeatPasswordController = TextEditingController();
 
     return Scaffold(
       backgroundColor: ColorsManger.white,
@@ -66,29 +68,30 @@ class CreateAccountView extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      controller: _controller.fullNameController,
+                      controller: fullNameController,
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
                       hintText: 'Full name',
                     ),
                     SizedBox(height: screenHeight * 0.032),
                     CustomTextField(
-                      controller: _controller.emailController,
+                      controller: emailController,
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
                       hintText: 'Email',
+
                     ),
                     SizedBox(height: screenHeight * 0.030),
                     CustomTextField(
-                      controller: _controller.passwordController,
+                      controller: passwordController,
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
                       hintText: 'Password',
-                      obscureText: true,
+                        obscureText: true,
                     ),
                     SizedBox(height: screenHeight * 0.032),
                     CustomTextField(
-                      controller: _controller.repeatPasswordController,
+                      controller: repeatPasswordController,
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
                       hintText: 'Repeat Password',
@@ -97,13 +100,18 @@ class CreateAccountView extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.030),
                     CustomButtom(
                       onTap: () {
-                        _controller.signUpWithEmailAndPassword();
+                        CreateAccountController().signUpWithEmailAndPassword(
+                          context,
+                          emailController.text,
+                          passwordController.text,
+                          fullNameController.text,
+                        );
                       },
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
                       text: 'Create account',
                     ),
-                    SizedBox(height: screenHeight * 0.030),
+                   SizedBox(height: screenHeight * 0.030),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -112,8 +120,8 @@ class CreateAccountView extends StatelessWidget {
                           style: StylesManager.bodyText3,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            Get.to(() => SigninView());
+                          onTap: (){
+                            Get.to(const SigninView());
                           },
                           child: Text(
                             'Log In',
