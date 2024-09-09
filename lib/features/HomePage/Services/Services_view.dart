@@ -90,8 +90,10 @@ class ServicesView extends StatelessWidget {
               ),
               // SizedBox(height:5.h),
               NextButton('Book now',
-                  PickDateAndTime(Services:serviceController.selectedService.value,
-                Price:serviceController.ServicesPrice.value,),(){})
+                  PickDateAndTime(
+                    Services:serviceController.selectedService.value,
+                    Price:serviceController.ServicesPrice.value,),
+                      (){})
             ],
           ),
         ),

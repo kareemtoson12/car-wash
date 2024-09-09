@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class PickDateAndTime extends StatelessWidget {
-  String Services;
+  var Services;
   var Price;
   PickDateAndTime({required this.Services,required this.Price,super.key});
 
@@ -22,6 +22,8 @@ class PickDateAndTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    calendarController.selectedprice.value= Services;
+    calendarController.selectedprice.value=Price;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

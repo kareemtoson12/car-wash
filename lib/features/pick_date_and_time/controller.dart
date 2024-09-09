@@ -12,6 +12,8 @@ class CalendarController extends GetxController {
   var focusedDay = DateTime.now().obs;
   var calendarFormat = CalendarFormat.month.obs;
   var selectedTime = ''.obs;
+  var selectedService = ''.obs;
+  var selectedprice = ''.obs;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   // Function for selecting a day on the calendar
   void onDaySelected(DateTime newSelectedDay, DateTime newFocusedDay) {
@@ -51,6 +53,8 @@ class CalendarController extends GetxController {
         await userRef.set({
           'selectedDay': selectedDay.value.toIso8601String(),
           'selectedTime': selectedTime.value,
+          'selectedService': selectedService.value,
+          'selectedPrice': selectedprice.value,
         }, SetOptions(merge: true));
 
         Get.snackbar('Success', 'Date and Time saved successfully');
