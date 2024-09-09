@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
 import 'package:clean_wash/core/widgets/selection_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -21,7 +23,6 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pick_date_and_time/controller.dart';
-
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key});
 
@@ -37,7 +38,7 @@ class _MapScreenState extends State<MapWidget> {
   List<Marker> markers = [];
   final String orsApiKey =
       '5b3ce3597851110001cf62488a1e605337094ad9882a77191535e421';
-  final CalendarController calendarController = Get.put(CalendarController());
+
   @override
   void initState() {
     super.initState();
@@ -57,7 +58,7 @@ class _MapScreenState extends State<MapWidget> {
                 ScreenTitleWidget('Pick location'),
                 const Divider(),
                 SelectionWidget('Select your Location ',
-                    'Select where you wantto wash  your car'),
+                    'Select where you want to wash your car'),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
@@ -96,12 +97,6 @@ class _MapScreenState extends State<MapWidget> {
                     ),
                   ),
                 ),
-                NextButton(
-                  'Next',
-                  const MapWidget(), // Replace with your screen
-                      () => calendarController.saveDateTimeToFirestore(), // Pass the function with the email
-                ),
-
               ],
             ),
           ),
@@ -177,7 +172,6 @@ class _MapScreenState extends State<MapWidget> {
         );
       });
     } else {
-      // Handle errors
       print('Failed to fetch route');
     }
   }
@@ -194,33 +188,49 @@ class _MapScreenState extends State<MapWidget> {
       );
       selectedLocation = point; // Save the selected location
     });
+
+    // Save the route and markers on the map
     getRoutes(point);
 
     // Save to SharedPreferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble('selected_latitude', point.latitude);
     prefs.setDouble('selected_longitude', point.longitude);
+
+    // Save the selected location to Firestore
+    await _saveLocationToFirestore(point);
+  }
+
+  Future<void> _saveLocationToFirestore(LatLng point) async {
+    try {
+      // Get the current user
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        // Create a reference to the user's document in Firestore
+        DocumentReference userRef = FirebaseFirestore.instance
+            .collection('Users')
+            .doc(user.email); // Use user's email as document ID
+
+        // Save the selected location (latitude and longitude) in Firestore
+        await userRef.set({
+          'selectedLocation': {
+            'latitude': point.latitude,
+            'longitude': point.longitude,
+          },
+        }, SetOptions(merge: true)); // Merge with existing data
+
+        Get.snackbar('Success', 'Location saved successfully!');
+      } else {
+        Get.snackbar('Error', 'User not logged in');
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to save location: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }
-
-/*Future<void> _getSavedLocation() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  double? latitude = prefs.getDouble('selected_latitude');
-  double? longitude = prefs.getDouble('selected_longitude');
-
-  if (latitude != null && longitude != null) {
-    setState(() {
-      selectedLocation = LatLng(latitude, longitude);
-      // Optionally add a marker for the saved location
-      markers.add(
-        Marker(
-          width: 80.0,
-          height: 80.0,
-          point: selectedLocation!,
-          child: const Icon(Icons.location_on, color: Colors.red, size: 40.0),
-        ),
-      );
-    });
-  }
-}
-*/
