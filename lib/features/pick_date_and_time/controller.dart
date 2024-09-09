@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class CalendarController extends GetxController {
   var focusedDay = DateTime.now().obs;
   var calendarFormat = CalendarFormat.month.obs;
   var selectedTime = ''.obs;
-
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   // Function for selecting a day on the calendar
   void onDaySelected(DateTime newSelectedDay, DateTime newFocusedDay) {
     selectedDay.value = newSelectedDay;
@@ -35,28 +36,30 @@ class CalendarController extends GetxController {
     selectedTime.value = time;
   }
 
-  // Function to send selected time and date to Firebase
-  Future<void> setTimeAndDate(String userName) async {
-    print("Sending time and date to Firebase for user: $userName"); // Debugging
-    print("Selected time: ${selectedTime.value}");
-    print("Selected date: ${selectedDay.value}");
 
+  // Function for saving selected date and time to Firestore for the logged-in user
+  Future<void> saveDateTimeToFirestore() async {
     try {
-      await FirebaseFirestore.instance.collection('Users').doc(userName).set(
-          {
-            'selectedTime': selectedTime.value,
-            'selectedDate': selectedDay.value.toIso8601String(),
-          },
-          SetOptions(
-              merge:
-                  true)); // SetOptions to merge with existing fields if necessary
+      // Get the current logged-in user from Firebase Authentication
+      User? user = FirebaseAuth.instance.currentUser;
 
-      // Show success snackbar
-      Get.snackbar('Success', 'Time and date updated successfully.');
-    } catch (error) {
-      // Show error snackbar
-      // Get.snackbar('Error', 'Failed to update time and date.');
-      print('Error sending time and date to Firebase: $error'); // Debugging
+      if (user != null) {
+        // Create a reference to the user's document in the 'Users' collection
+        DocumentReference userRef = firestore.collection('Users').doc(user.email);
+
+        // Update the selectedDay and selectedTime fields in the user's document
+        await userRef.set({
+          'selectedDay': selectedDay.value.toIso8601String(),
+          'selectedTime': selectedTime.value,
+        }, SetOptions(merge: true));
+
+        Get.snackbar('Success', 'Date and Time saved successfully');
+      } else {
+        Get.snackbar('Error', 'No user is currently logged in.');
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to save Date and Time: $e');
     }
   }
+
 }

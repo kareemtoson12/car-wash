@@ -73,10 +73,12 @@ class PickDateAndTime extends StatelessWidget {
                     )),
                 TimeSelectionWidget(),
                 NextButton(
-                    'Next',
-                    const MapWidget(),
-                    calendarController.setTimeAndDate(
-                        SigninController().emailController.text)),
+                  'Next',
+                  const MapWidget(), // Replace with your screen
+                      () => calendarController.saveDateTimeToFirestore(), // Pass the function with the email
+                )
+
+
                 //StepperView(),
               ],
             ),

@@ -1,4 +1,5 @@
 
+import 'package:clean_wash/features/map_screen/maps.dart';
 import 'package:clean_wash/features/registration/signin/signin_view.dart';
 
 import 'package:device_preview/device_preview.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 
           builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
-          home:SplashView()));
+          home:MapWidget()));
 
   }
 }

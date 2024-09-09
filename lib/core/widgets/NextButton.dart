@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-Widget NextButton(var name, gotoScreen, var saveData) {
+Widget NextButton(var name, gotoScreen, Future<void> Function()? saveData) {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: 15.h,
     ),
     child: GestureDetector(
-      onTap: () {
+      onTap: () async {
+        if (saveData != null) {
+          await saveData();  // Call saveData if it's provided
+        }
         Get.to(gotoScreen);
       },
       child: Container(

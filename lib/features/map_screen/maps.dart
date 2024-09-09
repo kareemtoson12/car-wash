@@ -7,6 +7,8 @@ import 'package:clean_wash/core/widgets/selection_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'package:latlong2/latlong.dart';
 
@@ -17,6 +19,8 @@ import 'package:location/location.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../pick_date_and_time/controller.dart';
 
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key});
@@ -33,6 +37,7 @@ class _MapScreenState extends State<MapWidget> {
   List<Marker> markers = [];
   final String orsApiKey =
       '5b3ce3597851110001cf62488a1e605337094ad9882a77191535e421';
+  final CalendarController calendarController = Get.put(CalendarController());
   @override
   void initState() {
     super.initState();
@@ -61,37 +66,42 @@ class _MapScreenState extends State<MapWidget> {
                     child: currentLocation == null
                         ? const Center(child: CircularProgressIndicator())
                         : FlutterMap(
-                            mapController: _mapController,
-                            options: MapOptions(
-                              initialCenter: LatLng(currentLocation!.latitude!,
-                                  currentLocation!.longitude!),
-                              initialZoom: 15.0,
-                              onTap: (tapPosition, point) =>
-                                  _addDestinationMarker(point),
+                      mapController: _mapController,
+                      options: MapOptions(
+                        initialCenter: LatLng(currentLocation!.latitude!,
+                            currentLocation!.longitude!),
+                        initialZoom: 15.0,
+                        onTap: (tapPosition, point) =>
+                            _addDestinationMarker(point),
+                      ),
+                      children: [
+                        TileLayer(
+                          urlTemplate:
+                          "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                          subdomains: const ['a', 'b', 'c'],
+                        ),
+                        MarkerLayer(
+                          markers: markers,
+                        ),
+                        PolylineLayer(
+                          polylines: [
+                            Polyline(
+                              points: routePoints,
+                              strokeWidth: 4.0,
+                              color: Colors.blue,
                             ),
-                            children: [
-                              TileLayer(
-                                urlTemplate:
-                                    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                subdomains: const ['a', 'b', 'c'],
-                              ),
-                              MarkerLayer(
-                                markers: markers,
-                              ),
-                              PolylineLayer(
-                                polylines: [
-                                  Polyline(
-                                    points: routePoints,
-                                    strokeWidth: 4.0,
-                                    color: Colors.blue,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                //   NextButton("Next",null),
+                NextButton(
+                  'Next',
+                  const MapWidget(), // Replace with your screen
+                      () => calendarController.saveDateTimeToFirestore(), // Pass the function with the email
+                ),
+
               ],
             ),
           ),
@@ -145,7 +155,7 @@ class _MapScreenState extends State<MapWidget> {
   Future<void> getRoutes(LatLng destination) async {
     if (currentLocation == null) return;
     final start =
-        LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
+    LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
     final response = await http.get(
       Uri.parse(
           'https://api.openrouteservice.org/v2/directions/driving-car?api_key=$orsApiKey&start=${start.longitude},${start.latitude}&end=${destination.longitude},${destination.latitude}'),
@@ -153,7 +163,7 @@ class _MapScreenState extends State<MapWidget> {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final List<dynamic> coords =
-          data['features'][0]['geometry']['coordinates'];
+      data['features'][0]['geometry']['coordinates'];
       setState(() {
         routePoints =
             coords.map((coord) => LatLng(coord[1], coord[0])).toList();
@@ -190,12 +200,6 @@ class _MapScreenState extends State<MapWidget> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble('selected_latitude', point.latitude);
     prefs.setDouble('selected_longitude', point.longitude);
-  }
-
-  @override
-  void dispose() {
-    getCureentLocation();
-    super.dispose();
   }
 }
 
