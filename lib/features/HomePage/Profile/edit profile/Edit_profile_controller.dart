@@ -1,3 +1,4 @@
+import 'package:clean_wash/features/HomePage/Profile/profile_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class EditProfileController extends GetxController {
       if (userData.value != null) {
         fullnameController.text = userData.value!['fullName'];
         emailController.text = userData.value!['email'];
-        passwordController.text = userData.value!['password'];
+        passwordController.text = userData.value!['password']??'123456';
       }
     } catch (e) {
       print("Error fetching data: $e");
@@ -44,6 +45,8 @@ class EditProfileController extends GetxController {
         'fullName': fullnameController.text,
         // 'password': passwordController.text,
       }).then((_){
+        final ProfileContr = Get.find<profileController>();
+        ProfileContr.get_data();
         _auth.currentUser!.updateDisplayName(fullnameController.text);
         // _auth.currentUser!.uppdat(fullnameController.text);
       });

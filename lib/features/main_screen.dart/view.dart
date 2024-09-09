@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
         child: GetMaterialApp(
             builder: DevicePreview.appBuilder,
             debugShowCheckedModeBanner: false,
-            home: MapWidget()));
+            // home: MapWidget()
+            home: SplashView()
+        ));
   }
 }

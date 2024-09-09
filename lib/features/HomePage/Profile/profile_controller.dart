@@ -31,24 +31,32 @@ class profileController extends GetxController {
     Check_Verification();
   }
 
-  Future get_data() async {
-    var data = await _firestore
-        .collection('Users')
-        .doc(_auth.currentUser!.email)
-        .get();
-    if (data.exists) {
-      userEmail.value =
-          data.data()?['email'] ?? 'No email'; // Safely retrieve email
+  void clearUserData() {
+    userName.value = '';
+    userEmail.value = '';
+    carType.value = '';
+    isVerify.value = false;
+  }
+  Future<void> get_data() async {
+    var data = await _firestore.collection('Users').doc(_auth.currentUser!.email).get();
+    if (data.exists && data.data() != null) {
+      userEmail.value = data.data()?['email'] ?? 'No email'; // Default value
       userName.value = data.data()?['fullName'] ?? 'No name';
-      carType.value = data.data()?['carType'] ?? 'No car';
-      print("${carType.value}");
+      carType.value = data.data()?['carType'] ?? 'No car type'; // Default message
+    } else {
+      // Set default values if no data found
+      userEmail.value = 'No email';
+      userName.value = 'No name';
+      carType.value = 'No car type';
+      print("No data found for the current user.");
     }
     await Check_Verification();
-    return data;
   }
+
 
   Future Check_Verification() async {
     isVerify.value = await _auth.currentUser!.emailVerified;
+
   }
 
   Future Verify_Account(BuildContext context) async {

@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:clean_wash/features/HomePage/Home/home_Controller.dart';
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_controller.dart';
 import 'package:clean_wash/features/HomePage/Profile/profile_controller.dart';
 import 'package:clean_wash/features/HomePage/Services/Services_view.dart';
@@ -10,7 +8,6 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
 import '../../../core/colors_manger.dart';
 import '../../registration/signin/signin_view.dart';
 import '../Widgets/CustomButton.dart';
@@ -106,10 +103,6 @@ Widget Header() {
               height: 200,
               decoration: BoxDecoration(
                 color:ColorsManger.darkblue,
-                  // image: DecorationImage(
-                // image: AssetImage("images/bubbles 2.jpg"),
-                // fit: BoxFit.cover,)
-
               ),)
         ),
       ),
@@ -121,7 +114,7 @@ Widget Header() {
             SizedBox(
               height: 15,
             ),
-            Row(
+            Obx(()=>Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -139,7 +132,7 @@ Widget Header() {
                       color: ColorsManger.white,
                     ))
               ],
-            ),
+            ),),
             Text(
               "A clean Car is a\nhappy car!",
               style: TextStyle(

@@ -24,8 +24,7 @@ class CreateAccountController {
           'fullName' : fullName,
           'createdAt': FieldValue.serverTimestamp(),
         });
-        final ProfileContr = Get.find<profileController>();
-        ProfileContr.get_data();
+        Get.find<profileController>().get_data();
         _auth.currentUser!.updateDisplayName(fullName);
         Get.to(NaivebarView());
       } else {

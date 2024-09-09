@@ -3,7 +3,9 @@ import 'package:clean_wash/core/styels_manger.dart';
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/NotificationButton.dart';
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
+import 'package:clean_wash/features/HomePage/Profile/edit%20profile/ChangePassword/changepasswordhome.dart';
 import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile_controller.dart';
+import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
 import 'package:clean_wash/features/HomePage/Widgets/Customtext.dart';
 import 'package:clean_wash/features/registration/widgets/custom_buttom.dart';
 import 'package:clean_wash/features/registration/widgets/custom_textfield.dart';
@@ -65,7 +67,7 @@ class EditProfileView extends StatelessWidget {
                     children: [
                       IconButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            Get.to(()=>NaivebarView());
                           },
                           icon: Icon(
                             Icons.arrow_back_ios,
@@ -102,10 +104,8 @@ class EditProfileView extends StatelessWidget {
                             fontWeight: FontWeight.bold)),
                     SizedBox(height: 5.h),
                     Custom_Textfield(
-                      EditprofileController.fullnameController,
-                      "Full Name",
-                      false,
-                      userData['fullName'],
+                      controller:EditprofileController.fullnameController,
+                      hintText: "Full Name",
                     ),
                     SizedBox(height: 10.h),
                     Text("Email",
@@ -115,10 +115,8 @@ class EditProfileView extends StatelessWidget {
                             fontWeight: FontWeight.bold)),
                     SizedBox(height: 5.h),
                     Custom_Textfield(
-                      EditprofileController.emailController,
-                      "Email",
-                      false,
-                      userData['email'],
+                      controller: EditprofileController.emailController,
+                      hintText: "Email",
                     ),
                     SizedBox(height: 10.h),
                     Text("Password",
@@ -128,10 +126,9 @@ class EditProfileView extends StatelessWidget {
                             fontWeight: FontWeight.bold)),
                     SizedBox(height: 5.h),
                     Custom_Textfield(
-                      EditprofileController.passwordController,
-                      "Password",
-                      true,
-                      userData['password'], // Adjust this as per your data
+                     controller:EditprofileController.passwordController,
+                      hintText: "Password",
+                      obscureText: true, // Adjust this as per your data
                     ),
                     SizedBox(height: 10.h),
                     Center(

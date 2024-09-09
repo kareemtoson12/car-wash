@@ -20,8 +20,7 @@ class SigninController extends GetxController {
       User? user = userCredential.user;
 
       if (user != null) {
-        final ProfileContr = Get.find<profileController>();
-        ProfileContr.get_data();
+        Get.find<profileController>().get_data();
         Get.off(() => NaivebarView());
       }
       return user;

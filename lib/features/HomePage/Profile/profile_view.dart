@@ -1,4 +1,5 @@
 import 'package:clean_wash/core/colors_manger.dart';
+import 'package:clean_wash/features/HomePage/Profile/edit%20profile/ChangePassword/changepasswordhome.dart';
 import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile_view.dart';
 import 'package:clean_wash/features/HomePage/Profile/profile_controller.dart';
 import 'package:clean_wash/features/HomePage/Services/Services_view.dart';
@@ -31,17 +32,17 @@ var settings_options = [
       Get.to(() => EditProfileView());
     }
   },
-  // {
-  //   'icon': FaIcon(
-  //     FontAwesomeIcons.lock,
-  //     color: Colors.white,
-  //   ),
-  //   'title': 'Change Password',
-  //   'color': ColorsManger.darkblue,
-  //   'function': () {
-  //     Get.to(() => EditProfileView());
-  //   }
-  // },
+  {
+    'icon': FaIcon(
+      FontAwesomeIcons.lock,
+      color: Colors.white,
+    ),
+    'title': 'Change Password',
+    'color': ColorsManger.darkblue,
+    'function': () {
+      Get.to(() => changepasshome());
+    }
+  },
   {
     'icon': FaIcon(
       FontAwesomeIcons.creditCard,
@@ -81,6 +82,7 @@ var settings_options = [
           onConfirm: () async {
             try {
               await SigninController().signOut();
+              // Get.find<profileController>().clearUserData();
             } on Exception catch (e) {}
           });
     }
@@ -114,46 +116,50 @@ class ProfileView extends StatelessWidget {
 }
 
 Widget HeaderWidgets(BuildContext context) {
-  return  Obx(() {
+  return Obx(() {
     return Column(
-    children: [
-      Divider(),
-      RPadding(
+      children: [
+        Divider(),
+        RPadding(
           padding: EdgeInsets.all(10.r),
           child: Row(children: [
             CircleAvatar(
               backgroundImage: AssetImage("images/unkown.png"),
-              // radius:30.r,
             ),
             SizedBox(
               width: 10.w,
             ),
             Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    Controller.userName.value,
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  Controller.userName.value, // This should update automatically
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20.sp),
+                ),
+                Text(
+                  Controller.userEmail.value,
+                  style: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Text(
-                    Controller.userEmail.value,
-                    style: TextStyle(
-                      color: Colors.black38,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],),
+                ),
+              ],
+            ),
             Spacer(),
-            !Controller.isVerify.value?Align(alignment:Alignment.bottomRight,child: CustomButton("Verify Email", (){
-              Controller.Verify_Account(context);
-
-            })):SizedBox.shrink(),
-
-          ])),
-      Divider(),
-    ],
-  ); });
+            !Controller.isVerify.value
+                ? Align(
+                alignment: Alignment.bottomRight,
+                child: CustomButton("Verify Email", () {
+                  Controller.Verify_Account(context);
+                }))
+                : SizedBox.shrink(),
+          ]),
+        ),
+        Divider(),
+      ],
+    );
+  });
 }
 
 Widget CarTypeWidgets() {
@@ -177,7 +183,6 @@ Widget CarTypeWidgets() {
               borderRadius: BorderRadius.all(Radius.circular(10.r))),
           child: Obx(
             () {
-              print("object");
               return Row(
                 children: [
                   SizedBox(
@@ -199,7 +204,7 @@ Widget CarTypeWidgets() {
                     // print("${Controller.carType}");
                     print("${Controller.isVerify.value}");
                     print("${_auth.currentUser!.emailVerified}");
-                    // Get.to(() => CarTypeView());
+                    Get.to(() => CarTypeView());
                   }),
                   SizedBox(
                     width: 20.w,
@@ -215,7 +220,6 @@ Widget CarTypeWidgets() {
 }
 
 Widget Car_Type() {
-  print(Controller.carType.value);
   switch (Controller.carType.value) {
     case 'Coupe':
       return Image.asset(
