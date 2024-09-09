@@ -1,7 +1,7 @@
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
 import 'package:clean_wash/core/widgets/selection_widget.dart';
-import 'package:clean_wash/core/widgets/stepper/stepper_controller.dart';
+
 import 'package:clean_wash/features/map_screen/maps.dart';
 
 import 'package:clean_wash/features/pick_date_and_time/controller.dart';
@@ -15,15 +15,14 @@ import 'package:table_calendar/table_calendar.dart';
 class PickDateAndTime extends StatelessWidget {
   var Services;
   var Price;
-  PickDateAndTime({required this.Services,required this.Price,super.key});
+  PickDateAndTime({required this.Services, required this.Price, super.key});
 
-  final StepperController stepperController = Get.put(StepperController());
   final CalendarController calendarController = Get.put(CalendarController());
 
   @override
   Widget build(BuildContext context) {
-    calendarController.selectedprice.value= Services;
-    calendarController.selectedprice.value=Price;
+    calendarController.selectedprice.value = Services;
+    calendarController.selectedprice.value = Price;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -77,11 +76,11 @@ class PickDateAndTime extends StatelessWidget {
                     )),
                 TimeSelectionWidget(),
                 NextButton(
-                  'Next',
-                  const MapWidget(), // Replace with your screen
-                      () => calendarController.saveDateTimeToFirestore(), // Pass the function with the email
-                )
-
+                    'Next',
+                    const MapWidget(), // Replace with your screen
+                    () => calendarController.saveDateTimeToFirestore(),
+                    350 // Pass the function with the email
+                    )
 
                 //StepperView(),
               ],

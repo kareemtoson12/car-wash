@@ -35,7 +35,7 @@ class ServicesView extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  serviceController.changeService('Standard wash','15');
+                  serviceController.changeService('Standard wash', '15');
                 },
                 child: buildServiceOption(
                   iconwidget:
@@ -54,7 +54,7 @@ class ServicesView extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  serviceController.changeService('Deluxe wash','45');
+                  serviceController.changeService('Deluxe wash', '45');
                 },
                 child: buildServiceOption(
                   iconwidget: Image.asset("images/bronze.png", height: 20.h),
@@ -72,7 +72,7 @@ class ServicesView extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  serviceController.changeService('Premium wash','95');
+                  serviceController.changeService('Premium wash', '95');
                 },
                 child: buildServiceOption(
                   iconwidget: Image.asset("images/silver.png", height: 20.h),
@@ -89,11 +89,14 @@ class ServicesView extends StatelessWidget {
                 ),
               ),
               // SizedBox(height:5.h),
-              NextButton('Book now',
+              NextButton(
+                  'Book now',
                   PickDateAndTime(
-                    Services:serviceController.selectedService.value,
-                    Price:serviceController.ServicesPrice.value,),
-                      (){})
+                    Services: serviceController.selectedService.value,
+                    Price: serviceController.ServicesPrice.value,
+                  ),
+                  () {},
+                  300)
             ],
           ),
         ),
@@ -173,7 +176,7 @@ class ServicesView extends StatelessWidget {
                     groupValue: serviceController.selectedService.value,
                     onChanged: (String? newValue) {
                       if (newValue != null) {
-                        serviceController.changeService(newValue,price);
+                        serviceController.changeService(newValue, price);
                       }
                     },
                   ),

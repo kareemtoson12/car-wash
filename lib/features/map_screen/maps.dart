@@ -1,9 +1,13 @@
 import 'dart:convert';
 
+import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
 import 'package:clean_wash/core/widgets/selection_widget.dart';
+
+import 'package:clean_wash/features/Payment/payment_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_stepper/easy_stepper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -23,6 +27,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pick_date_and_time/controller.dart';
+
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key});
 
@@ -34,10 +39,12 @@ class _MapScreenState extends State<MapWidget> {
   final MapController _mapController = MapController();
   LocationData? currentLocation;
   List<LatLng> routePoints = [];
+  int activeStep = 0;
   var selectedLocation;
   List<Marker> markers = [];
   final String orsApiKey =
       '5b3ce3597851110001cf62488a1e605337094ad9882a77191535e421';
+  // ignore: non_constant_identifier_names
 
   @override
   void initState() {
@@ -57,8 +64,9 @@ class _MapScreenState extends State<MapWidget> {
               children: [
                 ScreenTitleWidget('Pick location'),
                 const Divider(),
-                SelectionWidget('Select your Location ',
-                    'Select where you want to wash your car'),
+                MyStepper(),
+                /* SelectionWidget('Select your Location ',
+                    'Select where you want to wash your car'), */
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
@@ -67,42 +75,46 @@ class _MapScreenState extends State<MapWidget> {
                     child: currentLocation == null
                         ? const Center(child: CircularProgressIndicator())
                         : FlutterMap(
-                      mapController: _mapController,
-                      options: MapOptions(
-                        initialCenter: LatLng(currentLocation!.latitude!,
-                            currentLocation!.longitude!),
-                        initialZoom: 15.0,
-                        onTap: (tapPosition, point) =>
-                            _addDestinationMarker(point),
-                      ),
-                      children: [
-                        TileLayer(
-                          urlTemplate:
-                          "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                          subdomains: const ['a', 'b', 'c'],
-                        ),
-                        MarkerLayer(
-                          markers: markers,
-                        ),
-                        PolylineLayer(
-                          polylines: [
-                            Polyline(
-                              points: routePoints,
-                              strokeWidth: 4.0,
-                              color: Colors.blue,
+                            mapController: _mapController,
+                            options: MapOptions(
+                              initialCenter: LatLng(currentLocation!.latitude!,
+                                  currentLocation!.longitude!),
+                              initialZoom: 15.0,
+                              onTap: (tapPosition, point) =>
+                                  _addDestinationMarker(point),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                            children: [
+                              TileLayer(
+                                urlTemplate:
+                                    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                                subdomains: const ['a', 'b', 'c'],
+                              ),
+                              MarkerLayer(
+                                markers: markers,
+                              ),
+                              PolylineLayer(
+                                polylines: [
+                                  Polyline(
+                                    points: routePoints,
+                                    strokeWidth: 4.0,
+                                    color: Colors.blue,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                   ),
                 ),
+                NextButton('Next', PaymentView(), () {}, 250)
               ],
             ),
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        focusColor: Colors.red,
+        backgroundColor: ColorsManger.grey,
+        splashColor: Colors.orange,
         onPressed: () {
           if (currentLocation != null) {
             _mapController.move(
@@ -132,7 +144,7 @@ class _MapScreenState extends State<MapWidget> {
               ),
               child: const Icon(
                 Icons.my_location,
-                color: Colors.blue,
+                color: Colors.orange,
                 size: 40,
               )),
         );
@@ -150,7 +162,7 @@ class _MapScreenState extends State<MapWidget> {
   Future<void> getRoutes(LatLng destination) async {
     if (currentLocation == null) return;
     final start =
-    LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
+        LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
     final response = await http.get(
       Uri.parse(
           'https://api.openrouteservice.org/v2/directions/driving-car?api_key=$orsApiKey&start=${start.longitude},${start.latitude}&end=${destination.longitude},${destination.latitude}'),
@@ -158,7 +170,7 @@ class _MapScreenState extends State<MapWidget> {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final List<dynamic> coords =
-      data['features'][0]['geometry']['coordinates'];
+          data['features'][0]['geometry']['coordinates'];
       setState(() {
         routePoints =
             coords.map((coord) => LatLng(coord[1], coord[0])).toList();
@@ -232,5 +244,58 @@ class _MapScreenState extends State<MapWidget> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  Widget MyStepper() {
+    return EasyStepper(
+      activeStep: activeStep,
+      activeStepTextColor: Colors.black87,
+      finishedStepTextColor: Colors.black87,
+      internalPadding: 0,
+      showLoadingAnimation: false,
+      stepRadius: 10,
+      showStepBorder: false,
+      steps: [
+        EasyStep(
+          customStep: CircleAvatar(
+            radius: 8,
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+              radius: 7,
+              backgroundColor: activeStep >= 0 ? Colors.orange : Colors.white,
+            ),
+          ),
+          title: 'Date and time',
+        ),
+        EasyStep(
+          customStep: CircleAvatar(
+            radius: 8,
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+              radius: 7,
+              backgroundColor: activeStep >= 1 ? Colors.orange : Colors.white,
+            ),
+          ),
+          title: 'Location',
+          topTitle: true,
+        ),
+        EasyStep(
+          customStep: CircleAvatar(
+            radius: 8,
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+              radius: 7,
+              backgroundColor: activeStep >= 2 ? Colors.orange : Colors.white,
+            ),
+          ),
+          title: 'Payments',
+        ),
+      ],
+      onStepReached: (index) {
+        setState(() {
+          activeStep = index; // Updates the activeStep correctly
+        });
+      },
+    );
   }
 }

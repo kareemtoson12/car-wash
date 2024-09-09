@@ -18,7 +18,7 @@ class SplashController extends GetxController {
       _auth.authStateChanges().listen((User? user) {
         if (user != null) {
           // Get.to(() =>MapWidget());
-          Get.to(() =>NaivebarView());
+          Get.to(() => NaivebarView());
         } else {
           Get.to(() => SigninView());
         }
