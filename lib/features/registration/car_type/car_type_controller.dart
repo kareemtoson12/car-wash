@@ -18,8 +18,8 @@ class CarTypeController extends GetxController {
     await _firestore.collection('Users').doc(_auth.currentUser!.email).update({
       'carType': selectedCarType.value,
     });
-    final profileContr = Get.find<profileController>();
-    profileContr.get_data();
+    final ProfileContr = Get.find<profileController>();
+    ProfileContr.get_data();
     Get.to(NaivebarView());
   }
 }
