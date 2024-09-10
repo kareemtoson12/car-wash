@@ -6,7 +6,7 @@ class ServicesController extends GetxController{
 
   changeService(value,price){
     selectedService.value=value;
-    ServicesPrice.value=price;
+    ServicesPrice.value=price.toString();
   }
 
 }
