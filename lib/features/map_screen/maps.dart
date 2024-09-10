@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
-import 'package:clean_wash/core/widgets/selection_widget.dart';
-
 import 'package:clean_wash/features/Payment/payment_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_stepper/easy_stepper.dart';
@@ -14,19 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
-import 'package:latlong2/latlong.dart';
-
-import 'package:location/location.dart';
-
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../pick_date_and_time/controller.dart';
 
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key});

@@ -1,20 +1,16 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/styels_manger.dart';
-import 'package:clean_wash/core/widgets/NextButton.dart';
-import 'package:clean_wash/core/widgets/NotificationButton.dart';
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
-import 'package:clean_wash/features/HomePage/Profile/edit%20profile/ChangePassword/changepasswordhome.dart';
 import 'package:clean_wash/features/HomePage/Profile/edit%20profile/Edit_profile_controller.dart';
-import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
 import 'package:clean_wash/features/HomePage/Widgets/Customtext.dart';
 import 'package:clean_wash/features/registration/widgets/custom_buttom.dart';
-import 'package:clean_wash/features/registration/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class EditProfileView extends StatelessWidget {
   EditProfileView({super.key});
@@ -92,7 +88,6 @@ class EditProfileView extends StatelessWidget {
               if (EditprofileController.userData.value == null) {
                 return Center(child: Text("Error loading data"));
               }
-              var userData = EditprofileController.userData.value!;
               return Container(
                 padding: EdgeInsets.all(10.h),
                 child: Column(

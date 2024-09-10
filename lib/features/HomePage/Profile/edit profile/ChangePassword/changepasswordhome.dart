@@ -1,7 +1,8 @@
+// ignore_for_file: camel_case_types, must_be_immutable
+
 import 'package:clean_wash/features/HomePage/Profile/edit%20profile/ChangePassword/changepasshome_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class changepasshome extends StatelessWidget {
    changepasshome({super.key});
@@ -12,7 +13,7 @@ class changepasshome extends StatelessWidget {
       future: Controller.checkProvide(),
       builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         } else if (snapshot.hasError) {
@@ -22,7 +23,7 @@ class changepasshome extends StatelessWidget {
         } else if (snapshot.hasData) {
           return snapshot.data!;
         } else {
-          return Scaffold(
+          return const Scaffold(
             body: Center(child: Text('Something went wrong.')),
           );
         }

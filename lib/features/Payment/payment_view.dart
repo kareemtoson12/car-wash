@@ -1,5 +1,3 @@
-import 'package:clean_wash/core/widgets/NextButton.dart';
-import 'package:clean_wash/features/HomePage/Home/home_view.dart';
 import 'package:flutter/material.dart';
 
 class PaymentView extends StatefulWidget {

@@ -1,11 +1,8 @@
 import 'dart:async';
-
 import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
-import 'package:clean_wash/features/registration/create_account/create_account_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 

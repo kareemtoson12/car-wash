@@ -1,5 +1,4 @@
 import 'package:clean_wash/features/registration/car_type/car_type_controller.dart';
-import 'package:clean_wash/features/registration/signin/signin_controller.dart';
 import 'package:clean_wash/features/registration/widgets/custom_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

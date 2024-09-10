@@ -1,13 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
 import 'package:clean_wash/core/widgets/selection_widget.dart';
-
 import 'package:clean_wash/features/map_screen/maps.dart';
-
 import 'package:clean_wash/features/pick_date_and_time/controller.dart';
 import 'package:clean_wash/features/pick_date_and_time/widgets/time_selection_widget.dart';
-import 'package:clean_wash/features/registration/signin/signin_controller.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';

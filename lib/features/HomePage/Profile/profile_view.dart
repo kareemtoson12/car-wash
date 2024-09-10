@@ -7,16 +7,13 @@ import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
 import 'package:clean_wash/features/registration/car_type/car_type_view.dart';
 import 'package:clean_wash/features/registration/signin/signin_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../../core/styels_manger.dart';
 import '../../../core/widgets/NotificationButton.dart';
 import '../../map_screen/maps.dart';
-import '../../map_screen/view.dart';
 
 var Controller = Get.put(profileController());
 var x = profileController();
@@ -83,19 +80,17 @@ var settings_options = [
             try {
               await SigninController().signOut();
               // Get.find<profileController>().clearUserData();
-            } on Exception catch (e) {}
+            } on Exception {}
           });
     }
   },
 ];
 
 class ProfileView extends StatelessWidget {
-  ProfileView({Key? key}) : super(key: key);
+  const ProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var Appbarheight = AppBar().preferredSize.height;
-    var Screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(

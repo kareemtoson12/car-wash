@@ -2,16 +2,11 @@ import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/styels_manger.dart';
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/NotificationButton.dart';
-import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_controller.dart';
 import 'package:clean_wash/features/HomePage/Services/Services_controller.dart';
-import 'package:clean_wash/features/HomePage/Widgets/CustomButton.dart';
 import 'package:clean_wash/features/pick_date_and_time/view.dart';
-import 'package:clean_wash/features/pick_date_and_time/widgets/time_selection_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ServicesView extends StatelessWidget {
   ServicesView({super.key});

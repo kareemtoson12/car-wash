@@ -1,10 +1,7 @@
 import 'package:clean_wash/features/HomePage/Services/Services_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../core/colors_manger.dart';
-import '../../registration/signin/signin_view.dart';
 import '../Home/home_view.dart';
 import '../Profile/profile_view.dart';
 import 'Naivebar_controller.dart';
@@ -12,7 +9,7 @@ import 'Naivebar_controller.dart';
 class NaivebarView extends StatelessWidget {
   final _controller = Get.put(Naivebar_Controller());
 
-  static List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     HomeView(),
     ServicesView(),
     ProfileView()
@@ -20,7 +17,6 @@ class NaivebarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime? _lastClicked;
     return WillPopScope(
       onWillPop: () async {
         return false;

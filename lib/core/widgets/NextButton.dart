@@ -11,10 +11,8 @@ Widget NextButton(var name, gotoScreen, Function() saveData, double width) {
     ),
     child: GestureDetector(
       onTap: () async {
-        if (saveData != null) {
-          await saveData(); // Call saveData if it's provided
-        }
-        Get.to(gotoScreen);
+        await saveData();
+              Get.to(gotoScreen);
       },
       child: Container(
         width: width.w,
