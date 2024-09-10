@@ -8,18 +8,18 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(SplashController());
-
     return Scaffold(
-
-        body: SafeArea(
-            child: Center(
-      child: SizedBox(
-        width: double.infinity,
-        child: Image.asset(
-          'images/car wash app (4).png',
-          fit: BoxFit.cover,
+      body: SafeArea(
+        child: Center(
+          child: SizedBox(
+            width: double.infinity,
+            child: Image.asset(
+              'images/car wash app (4).png',
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
-    )));
+    );
   }
 }
