@@ -1,5 +1,4 @@
 import 'package:clean_wash/core/styels_manger.dart';
-import 'package:clean_wash/features/HomePage/Home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,7 @@ Widget ScreenTitleWidget(String subTitle) {
     children: [
       IconButton(
           onPressed: () {
-            Get.offAll(HomeView());
+            Get.back();
           },
           icon: const Icon(Icons.arrow_back_ios)),
       Padding(

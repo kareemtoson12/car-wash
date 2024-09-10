@@ -34,26 +34,33 @@ class profileController extends GetxController {
     carType.value = '';
     isVerify.value = false;
   }
+
   Future<void> get_data() async {
-    var data = await _firestore.collection('Users').doc(_auth.currentUser!.email).get();
-    if (data.exists && data.data() != null) {
-      userEmail.value = data.data()?['email'] ?? 'No email'; // Default value
-      userName.value = data.data()?['fullName'] ?? 'No name';
-      carType.value = data.data()?['carType'] ?? 'No car type'; // Default message
-    } else {
-      // Set default values if no data found
-      userEmail.value = 'No email';
-      userName.value = 'No name';
-      carType.value = 'No car type';
-      print("No data found for the current user.");
+    if (_auth.currentUser != null) {
+      var data = await _firestore
+          .collection('Users')
+          .doc(_auth.currentUser!.email)
+          .get();
+      if (data.exists && data.data() != null) {
+        userEmail.value = data.data()?['email'] ?? 'No email'; // Default value
+        userName.value = data.data()?['fullName'] ?? 'No name';
+        carType.value =
+            data.data()?['carType'] ?? 'No car type'; // Default message
+      } else {
+        // Set default values if no data found
+        userEmail.value = 'No email';
+        userName.value = 'No name';
+        carType.value = 'No car type';
+        print("No data found for the current user.");
+      }
+      await Check_Verification();
     }
-    await Check_Verification();
   }
 
-
   Future Check_Verification() async {
-    isVerify.value = await _auth.currentUser!.emailVerified;
-
+    if (_auth.currentUser != null) {
+      isVerify.value = await _auth.currentUser!.emailVerified;
+    }
   }
 
   Future Verify_Account(BuildContext context) async {
@@ -88,10 +95,12 @@ class profileController extends GetxController {
                   title: Align(
                       alignment: Alignment.center,
                       child: Icon(
-                        Icons.check_circle,color: Colors.blue,size:80,
+                        Icons.check_circle,
+                        color: Colors.blue,
+                        size: 80,
                       )),
                   contentPadding:
-                  EdgeInsets.only(top: 20, bottom: 15, left: 10, right: 10),
+                      EdgeInsets.only(top: 20, bottom: 15, left: 10, right: 10),
                   content: Text(
                     "The verification code has been sent to your email",
                     style: TextStyle(fontSize: 20),
@@ -100,14 +109,12 @@ class profileController extends GetxController {
                   actions: [
                     Center(
                         child: CustomButton("Done", () {
-                          Navigator.of(verifyContext).pop();
-                        }))
+                      Navigator.of(verifyContext).pop();
+                    }))
                   ],
                 );
               });
         });
-
-
       }).catchError((e) {
         Fluttertoast.showToast(
             msg: "$e",
