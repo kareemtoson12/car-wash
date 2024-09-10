@@ -103,13 +103,20 @@ class SigninView extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset(
-                              height: 40.h,
-                              'images/google_logo.svg.png',
+                            GestureDetector(
+                              onTap: () {
+                                controller.signInWithGoogle();
+                              },
+                              child: Image.asset(
+                                height: 40.h,
+                                'images/google_logo.svg.png',
+                              ),
                             ),
-                            SvgPicture.asset(
-                              height: 40.h,
-                              'images/facebook_logo.svg',
+                            GestureDetector(
+                              child: SvgPicture.asset(
+                                height: 40.h,
+                                'images/facebook_logo.svg',
+                              ),
                             ),
                           ],
                         ),
