@@ -27,33 +27,33 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  cloud_firestore: ^5.4.0
+  cloud_firestore:
   cupertino_icons: ^1.0.8
-  device_preview: ^1.2.0
-  easy_stepper: ^0.8.5+1
-  firebase_auth: 5.2.0
-  firebase_core: ^3.4.0
-  firebase_storage: ^12.2.0
+  device_preview:
+  easy_stepper:
+  firebase_auth:
+  firebase_core:
+  firebase_storage:
   flutter:
     sdk: flutter
-  flutter_custom_clippers: ^2.1.0
-  flutter_map: ^7.0.2
-  flutter_screenutil: ^5.9.3
-  flutter_stripe: ^11.0.0
-  flutter_svg: ^2.0.10+1
-  fluttertoast: ^8.2.8
-  font_awesome_flutter: ^10.7.0
-  get: ^4.6.6
-  google_sign_in: ^6.2.1
-  http: ^1.2.2
-  location: ^6.0.2
-  shared_preferences: ^2.3.2
-  table_calendar: ^3.1.2
+  flutter_custom_clippers:
+  flutter_map:
+  flutter_screenutil:
+  flutter_stripe:
+  flutter_svg:
+  fluttertoast:
+  font_awesome_flutter:
+  get:
+  google_sign_in:
+  http:
+  location:
+  shared_preferences:
+  table_calendar:
 
 dependency_overrides:
-  stripe_android: "9.5.0+1"
+  stripe_android:
 dev_dependencies:
-  flutter_lints: ^4.0.0
+  flutter_lints:
   flutter_test:
     sdk: flutter
 
