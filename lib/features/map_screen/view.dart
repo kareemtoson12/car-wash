@@ -19,7 +19,6 @@ class MapScreen extends StatelessWidget {
               children: [
                 ScreenTitleWidget('Pick location'),
                 const Divider(),
-                //Expanded(child: StepperView()),
                 SelectionWidget('Select your Location ',
                     'Select where you wantto wash  your car'),
               ],

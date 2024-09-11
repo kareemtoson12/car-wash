@@ -60,7 +60,9 @@ var settings_options = [
     'title': 'Loyalty club',
     'color': Colors.yellow,
     'function': () {
-      Get.to(() => MapWidget());
+      Get.to(() => MapWidget(
+            activeSteep: 1,
+          ));
     }
   },
   {
@@ -103,7 +105,11 @@ class ProfileView extends StatelessWidget {
           child: Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [HeaderWidgets(context), CarTypeWidgets(), SettingsWidget()],
+              children: [
+                HeaderWidgets(context),
+                CarTypeWidgets(),
+                SettingsWidget()
+              ],
             ),
           ),
         ));
@@ -129,8 +135,8 @@ Widget HeaderWidgets(BuildContext context) {
               children: [
                 Text(
                   Controller.userName.value, // This should update automatically
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 20.sp),
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
                 ),
                 Text(
                   Controller.userEmail.value,
@@ -144,10 +150,10 @@ Widget HeaderWidgets(BuildContext context) {
             Spacer(),
             !Controller.isVerify.value
                 ? Align(
-                alignment: Alignment.bottomRight,
-                child: CustomButton("Verify Email", () {
-                  Controller.Verify_Account(context);
-                }))
+                    alignment: Alignment.bottomRight,
+                    child: CustomButton("Verify Email", () {
+                      Controller.Verify_Account(context);
+                    }))
                 : SizedBox.shrink(),
           ]),
         ),

@@ -9,6 +9,11 @@ class StylesManager {
     fontWeight: FontWeight.bold,
     color: Colors.blue[900],
   );
+  static TextStyle headline11 = TextStyle(
+    fontSize: 15.0.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.blue[700],
+  );
 
   static TextStyle headline2 = TextStyle(
     fontSize: 15.sp,

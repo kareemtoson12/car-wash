@@ -2,7 +2,6 @@ import 'package:clean_wash/features/Payment/payment_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class PaymentView extends GetView<PaymentController> {
   const PaymentView({super.key});
 
@@ -22,7 +21,8 @@ class PaymentView extends GetView<PaymentController> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: GetBuilder<PaymentController>(
                 builder: (_) => ListView.builder(
-                  itemCount: paymentMethodsImages.length, // Use a separate list for methods
+                  itemCount: paymentMethodsImages
+                      .length, // Use a separate list for methods
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 30.0),
@@ -33,26 +33,26 @@ class PaymentView extends GetView<PaymentController> {
                         decoration: ShapeDecoration(
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(
-                              width: 1.5,
-                              color: Colors.white
-                            ),
+                                width: 1.5, color: Colors.white),
                             borderRadius: BorderRadius.circular(16),
                           ),
                         ),
                         child: RadioListTile(
                           title: Row(
                             children: [
-                              Image.asset(paymentMethodsImages[index],
+                              Image.asset(
+                                paymentMethodsImages[index],
                                 height: 100,
-                                fit:BoxFit.scaleDown,
-                              scale: 4,),
-                              Text(paymentMethodsTitles[index],
-                                selectionColor: Colors.white,style: const TextStyle(
-                                  color: Colors.white
-                                ),),
+                                fit: BoxFit.scaleDown,
+                                scale: 4,
+                              ),
+                              Text(
+                                paymentMethodsTitles[index],
+                                selectionColor: Colors.white,
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             ],
                           ),
-
                           value: index,
                           groupValue: controller.selectedValue.value,
                           onChanged: controller.onRadioSelected,
@@ -99,9 +99,15 @@ class PaymentView extends GetView<PaymentController> {
 }
 
 // Assuming payment methods are defined elsewhere (e.g., in a constants file)
-const List<String> paymentMethodsTitles = ['Apple Pay', 'GooglePay', 'Credit Card', 'Paypal'];
-const List<String> paymentMethodsImages =
-['images/ApplePay.png',
+const List<String> paymentMethodsTitles = [
+  'Apple Pay',
+  'GooglePay',
+  'Credit Card',
+  'Paypal'
+];
+const List<String> paymentMethodsImages = [
+  'images/ApplePay.png',
   'images/GooglePay.png',
   'images/Credit.png',
-  'images/Paypal.png'];
+  'images/Paypal.png'
+];

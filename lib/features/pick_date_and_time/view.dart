@@ -1,26 +1,37 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
-import 'package:clean_wash/core/widgets/selection_widget.dart';
+import 'package:clean_wash/core/widgets/stepper_widget.dart';
 import 'package:clean_wash/features/map_screen/maps.dart';
 import 'package:clean_wash/features/pick_date_and_time/controller.dart';
 import 'package:clean_wash/features/pick_date_and_time/widgets/time_selection_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:easy_stepper/easy_stepper.dart'; // Import EasyStepper
 
-class PickDateAndTime extends StatelessWidget {
+class PickDateAndTime extends StatefulWidget {
   var Services;
   var Price;
   PickDateAndTime({required this.Services, required this.Price, super.key});
 
+  @override
+  State<PickDateAndTime> createState() => _PickDateAndTimeState();
+}
+
+class _PickDateAndTimeState extends State<PickDateAndTime> {
   final CalendarController calendarController = Get.put(CalendarController());
+  int activeStep = 0; // Active step index for the stepper
+
+  @override
+  void initState() {
+    super.initState();
+    calendarController.selectedprice.value = widget.Services;
+    calendarController.selectedprice.value = widget.Price;
+  }
 
   @override
   Widget build(BuildContext context) {
-    calendarController.selectedprice.value = Services;
-    calendarController.selectedprice.value = Price;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -30,10 +41,12 @@ class PickDateAndTime extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ScreenTitleWidget('pick date and time'),
+                ScreenTitleWidget('Pick Date and Time'),
                 const Divider(),
-                SelectionWidget('Select your date and time',
-                    'select days when wash is available'),
+                // Insert the Stepper widget here
+                MyStteper(
+                  activeStep: activeStep,
+                ),
                 Obx(() => TableCalendar(
                       firstDay: DateTime.utc(2010, 10, 16),
                       lastDay: DateTime.utc(2030, 3, 14),
@@ -74,13 +87,13 @@ class PickDateAndTime extends StatelessWidget {
                     )),
                 TimeSelectionWidget(),
                 NextButton(
-                    'Next',
-                    const MapWidget(), // Replace with your screen
-                    () => calendarController.saveDateTimeToFirestore(),
-                    350 // Pass the function with the email
-                    )
-
-                //StepperView(),
+                  'Next',
+                  MapWidget(
+                    activeSteep: 1,
+                  ),
+                  () => calendarController.saveDateTimeToFirestore(),
+                  350,
+                ),
               ],
             ),
           ),

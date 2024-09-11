@@ -1,24 +1,30 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+import 'package:clean_wash/core/widgets/stepper_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_stepper/easy_stepper.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:latlong2/latlong.dart';
+import 'package:location/location.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/widgets/NextButton.dart';
 import 'package:clean_wash/core/widgets/screen_title_widget.dart';
 import 'package:clean_wash/features/Payment/payment_view.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_stepper/easy_stepper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:location/location.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MapWidget extends StatefulWidget {
-  const MapWidget({super.key});
+  int activeSteep;
+  MapWidget({
+    Key? key,
+    required this.activeSteep,
+  }) : super(key: key);
 
   @override
   State<MapWidget> createState() => _MapScreenState();
@@ -28,16 +34,19 @@ class _MapScreenState extends State<MapWidget> {
   final MapController _mapController = MapController();
   LocationData? currentLocation;
   List<LatLng> routePoints = [];
-  int activeStep = 0;
+
   var selectedLocation;
   List<Marker> markers = [];
   final String orsApiKey =
       '5b3ce3597851110001cf62488a1e605337094ad9882a77191535e421';
   // ignore: non_constant_identifier_names
 
+  int activeStep = 0; // Default value
+
   @override
   void initState() {
     super.initState();
+    activeStep = widget.activeSteep; // Initialize with the passed activeSteep
     getCureentLocation();
   }
 
@@ -53,7 +62,9 @@ class _MapScreenState extends State<MapWidget> {
               children: [
                 ScreenTitleWidget('Pick location'),
                 const Divider(),
-                MyStepper(),
+                MyStteper(
+                  activeStep: 1,
+                ),
                 /* SelectionWidget('Select your Location ',
                     'Select where you want to wash your car'), */
                 Padding(
@@ -233,58 +244,5 @@ class _MapScreenState extends State<MapWidget> {
   @override
   void dispose() {
     super.dispose();
-  }
-
-  Widget MyStepper() {
-    return EasyStepper(
-      activeStep: activeStep,
-      activeStepTextColor: Colors.black87,
-      finishedStepTextColor: Colors.black87,
-      internalPadding: 0,
-      showLoadingAnimation: false,
-      stepRadius: 10,
-      showStepBorder: false,
-      steps: [
-        EasyStep(
-          customStep: CircleAvatar(
-            radius: 8,
-            backgroundColor: Colors.white,
-            child: CircleAvatar(
-              radius: 7,
-              backgroundColor: activeStep >= 0 ? Colors.orange : Colors.white,
-            ),
-          ),
-          title: 'Date and time',
-        ),
-        EasyStep(
-          customStep: CircleAvatar(
-            radius: 8,
-            backgroundColor: Colors.white,
-            child: CircleAvatar(
-              radius: 7,
-              backgroundColor: activeStep >= 1 ? Colors.orange : Colors.white,
-            ),
-          ),
-          title: 'Location',
-          topTitle: true,
-        ),
-        EasyStep(
-          customStep: CircleAvatar(
-            radius: 8,
-            backgroundColor: Colors.white,
-            child: CircleAvatar(
-              radius: 7,
-              backgroundColor: activeStep >= 2 ? Colors.orange : Colors.white,
-            ),
-          ),
-          title: 'Payments',
-        ),
-      ],
-      onStepReached: (index) {
-        setState(() {
-          activeStep = index; // Updates the activeStep correctly
-        });
-      },
-    );
   }
 }
