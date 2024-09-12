@@ -10,12 +10,12 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       _auth.authStateChanges().listen((User? user) {
         if (user != null) {
           Get.to(() => NaivebarView());
         } else {
-          Get.to(() => SigninView());
+          Get.to(() => const SigninView());
         }
       });
     });
