@@ -14,7 +14,7 @@ class Naivebar_Controller extends GetxController {
     // TODO: implement onInit
     super.onInit();
     UserName = Controller.userName;
-    //  UserName.value = (FirebaseAuth.instance.currentUser!.displayName)!;
+    UserName.value = FirebaseAuth.instance.currentUser?.displayName ?? 'Guest';
   }
 
   void onItemTapped(int index) {
