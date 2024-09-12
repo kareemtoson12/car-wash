@@ -5,11 +5,11 @@ import 'package:clean_wash/features/map_screen/maps.dart';
 import 'package:clean_wash/features/pick_date_and_time/controller.dart';
 import 'package:clean_wash/features/pick_date_and_time/widgets/time_selection_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:easy_stepper/easy_stepper.dart'; // Import EasyStepper
 
+// ignore: must_be_immutable
 class PickDateAndTime extends StatefulWidget {
   var Services;
   var Price;

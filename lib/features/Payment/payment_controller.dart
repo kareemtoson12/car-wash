@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:clean_wash/features/Payment/payment_view.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +10,14 @@ import '../../core/api_key.dart';
 class PaymentController extends GetxController {
   Map<String, dynamic>? paymentIntentData;
   final RxInt selectedValue = 0.obs;
+  var paymentType = "".obs;
 
   void onRadioSelected(value) {
     selectedValue.value = value;
+
     update();
   }
+
   void onNextButtonPressed() {
     Get.snackbar(
       "Selected Payment",
@@ -35,16 +37,17 @@ class PaymentController extends GetxController {
 
       await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
-            customFlow: false,
-            googlePay: const PaymentSheetGooglePay(merchantCountryCode:'US',testEnv: true,),
-            merchantDisplayName: 'Prospects',
-            customerId: paymentIntentData!['customer'],
-            paymentIntentClientSecret: paymentIntentData!['client_secret'],
-            customerEphemeralKeySecret: paymentIntentData!['ephemeralKey'],
-
-          ));
+        customFlow: false,
+        googlePay: const PaymentSheetGooglePay(
+          merchantCountryCode: 'US',
+          testEnv: true,
+        ),
+        merchantDisplayName: 'Prospects',
+        customerId: paymentIntentData!['customer'],
+        paymentIntentClientSecret: paymentIntentData!['client_secret'],
+        customerEphemeralKeySecret: paymentIntentData!['ephemeralKey'],
+      ));
       displayPaymentSheet();
-
     } catch (e, s) {
       print('exception:$e$s');
     }
@@ -65,7 +68,6 @@ class PaymentController extends GetxController {
       } else {
         print("Unforeseen error: ${e}");
       }
-
     } catch (e) {
       print("exception:$e");
     }
@@ -83,7 +85,6 @@ class PaymentController extends GetxController {
           Uri.parse('https://api.stripe.com/v1/payment_intents'),
           body: body,
           headers: {
-
             'Authorization': 'Bearer ${ApiKeys.secretKey}',
             'Content-Type': 'application/x-www-form-urlencoded'
           });
