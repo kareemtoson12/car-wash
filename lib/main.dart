@@ -16,6 +16,6 @@ void main() async {
   Get.put(profileController());
   runApp(DevicePreview(
     enabled: !kReleaseMode,
-    builder: (context) => MyApp(),
+    builder: (context) => const MyApp(),
   ));
 }

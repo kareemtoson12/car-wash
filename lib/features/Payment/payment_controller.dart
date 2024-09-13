@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
 import '../../core/api_key.dart';
+import '../HomePage/NaiveBar/Naivebar_view.dart';
 
 class PaymentController extends GetxController {
   Map<String, dynamic>? paymentIntentData;
   final RxInt selectedValue = 0.obs;
   var paymentType = "".obs;
+  final activeStep = 2.obs;
 
   void onRadioSelected(value) {
     selectedValue.value = value;
@@ -48,6 +49,8 @@ class PaymentController extends GetxController {
         customerEphemeralKeySecret: paymentIntentData!['ephemeralKey'],
       ));
       displayPaymentSheet();
+      Get.to(() => NaivebarView());
+
     } catch (e, s) {
       print('exception:$e$s');
     }
