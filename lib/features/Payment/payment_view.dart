@@ -1,11 +1,11 @@
 import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/styels_manger.dart';
-import 'package:clean_wash/core/widgets/stepper_widget.dart';
-
-import 'package:clean_wash/features/Payment/payment_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
+
+import 'payment_controller.dart';
 
 class PaymentView extends GetView<PaymentController> {
   const PaymentView({super.key});
@@ -21,86 +21,114 @@ class PaymentView extends GetView<PaymentController> {
           style: StylesManager.titleText,
         ),
       ),
-      body: Column(
-        children: [
-          MyStteper(activeStep: 3),
-          Expanded(
-            flex: 1,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.dg),
-              child: GetBuilder<PaymentController>(
-                builder: (_) => ListView.builder(
-                  itemCount: paymentMethodsImages
-                      .length, // Use a separate list for methods
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(top: 30.0.dm),
-                      child: AnimatedContainer(
-                        height: 120.h,
-                        width: double.infinity,
-                        duration: const Duration(milliseconds: 100),
-                        decoration: ShapeDecoration(
-                          color: ColorsManger.black,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                                width: 1.5.w, color: ColorsManger.primaryColor),
-                            borderRadius: BorderRadius.circular(16),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          // Define breakpoints for different screen sizes
+          final isSmallScreen = constraints.maxWidth < 600;
+
+          return Column(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: isSmallScreen ? 8.0 : 16.0,
+                  ),
+                  child: GetBuilder<PaymentController>(
+                    builder: (_) => ListView.builder(
+                      itemCount: paymentMethodsImages.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 30.0),
+                          child: AnimatedContainer(
+                            height: isSmallScreen ? 80.0 : 120.0,
+                            width: double.infinity,
+                            duration: const Duration(milliseconds: 100),
+                            decoration: ShapeDecoration(
+                              color: ColorsManger.black,
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                    width: 1.5, color: ColorsManger.orange),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            child: RadioListTile(
+                              title: Row(
+                                children: [
+                                  Image.asset(
+                                    paymentMethodsImages[index],
+                                    height: isSmallScreen ? 50.0 : 100.0,
+                                    fit: BoxFit.scaleDown,
+                                    scale: isSmallScreen ? 3 : 4,
+                                  ),
+                                  SizedBox(
+                                      width: isSmallScreen
+                                          ? 8.0
+                                          : 16.0), // Add spacing based on screen size
+                                  Text(
+                                    paymentMethodsTitles[index],
+                                    selectionColor: ColorsManger.white,
+                                    style: TextStyle(color: ColorsManger.white),
+                                  ),
+                                ],
+                              ),
+                              value: index,
+                              groupValue: controller.selectedValue.value,
+                              onChanged: controller.onRadioSelected,
+                              activeColor: ColorsManger.white,
+                              selectedTileColor: ColorsManger.darkblue,
+                              hoverColor: ColorsManger.black,
+                            ),
                           ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40.0),
+                child: InkWell(
+                  onTap: () {
+                    controller.makePayment(amount: '15', currency: 'USD');
+                  },
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: isSmallScreen
+                            ? constraints.maxWidth * 0.8
+                            : double
+                                .infinity, // Adjust container width based on screen size
+                        decoration: BoxDecoration(
+                          color: ColorsManger.orange,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10,
+                              offset: Offset(0, 10),
+                            ),
+                          ],
                         ),
-                        child: RadioListTile(
-                          title: Row(
-                            children: [
-                              Image.asset(
-                                paymentMethodsImages[index],
-                                height: 100.h,
-                                fit: BoxFit.scaleDown,
-                                scale: 4,
-                              ),
-                              Text(
-                                paymentMethodsTitles[index],
-                                selectionColor: Colors.white,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Text(
+                              'Make Payment',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
                           ),
-                          value: index,
-                          groupValue: controller.selectedValue.value,
-                          onChanged: controller.onRadioSelected,
-                          activeColor: Colors.orange,
                         ),
                       ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              controller.makePayment(amount: '15', currency: 'USD');
-            },
-            child: Center(
-              child: Container(
-                margin: EdgeInsets.all(10.dg),
-                decoration: BoxDecoration(
-                  color: ColorsManger.AccentOrange,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10,
-                      offset: Offset(0, 10),
                     ),
-                  ],
+                  ),
                 ),
-                child: Padding(
-                  padding: EdgeInsets.all(8.0.dg),
-                  child: Text('Make Payment', style: StylesManager.bodyText4),
-                ),
-              ),
-            ),
-          )
-        ],
+              )
+            ],
+          );
+        },
       ),
     );
   }
