@@ -12,7 +12,7 @@ Widget NextButton(var name, gotoScreen, Function() saveData, double width) {
     child: GestureDetector(
       onTap: () async {
         await saveData();
-              Get.to(gotoScreen);
+        Get.to(gotoScreen);
       },
       child: Container(
         width: width.w,
