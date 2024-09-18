@@ -8,8 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CreateAccountController {
    static FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance; // إضافة Firestore
-
-  Future<User?> signUpWithEmailAndPassword(
+   final formKey = GlobalKey<FormState>();
+   Future<User?> signUpWithEmailAndPassword(
     BuildContext context, String email, String password, String fullName) async {
   try {
     UserCredential userCredential = await _auth

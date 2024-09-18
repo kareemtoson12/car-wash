@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:clean_wash/features/HomePage/NaiveBar/Naivebar_view.dart';
 import 'package:clean_wash/features/HomePage/Profile/profile_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,10 +11,9 @@ import 'signin_view.dart';
 class SigninController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+  final formKey = GlobalKey<FormState>();
   Future<User?> signInWithEmailAndPassword() async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
@@ -39,7 +40,7 @@ class SigninController extends GetxController {
       }
 
       final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      await googleUser.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -47,7 +48,7 @@ class SigninController extends GetxController {
       );
 
       UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
+      await _auth.signInWithCredential(credential);
       User? user = userCredential.user;
 
       if (user != null) {
