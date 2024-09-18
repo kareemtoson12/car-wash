@@ -9,13 +9,17 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(SplashController());
     return Scaffold(
+      backgroundColor:Color(0xffDFE1D4),
       body: SafeArea(
         child: Center(
-          child: SizedBox(
-            width: double.infinity,
-            child: Image.asset(
-              'images/car wash app (4).png',
-              fit: BoxFit.cover,
+          child: Container(
+            color: Color(0xffDFE1D4),
+            child: SizedBox(
+              width: double.infinity,
+              child: Image.asset(
+                'images/car wash app (4).png',
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),

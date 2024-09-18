@@ -49,7 +49,7 @@ var settings_options = [
     'title': 'Payment information',
     'color': ColorsManger.darkblue,
     'function': () {
-      Get.to(() => ServicesView());
+      // Get.to(() => ServicesView());
     }
   },
   {
@@ -60,9 +60,6 @@ var settings_options = [
     'title': 'Loyalty club',
     'color': Colors.yellow,
     'function': () {
-      Get.to(() => MapWidget(
-            activeSteep: 1,
-          ));
     }
   },
   {
