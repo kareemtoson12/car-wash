@@ -52,7 +52,7 @@ class HomeView extends StatelessWidget {
                       child: Column(
                         children: [
                           SizedBox(
-                            height:10.h,
+                            height: 10.h,
                           ),
                           Features_services(),
                           appointment(),
@@ -82,7 +82,7 @@ class HomeView extends StatelessWidget {
 }
 
 Widget Header() {
-  var controller=Get.put(Naivebar_Controller());
+  var controller = Get.put(Naivebar_Controller());
   return Stack(
     children: [
       ClipPath(
@@ -94,13 +94,14 @@ Widget Header() {
       ClipPath(
         clipper: WaveClipperTwo(),
         child: ImageFiltered(
-    imageFilter: ImageFilter.blur(sigmaX: 2.0, sigmaY:3.0), // Adjust the blur intensity here
-          child: Container(
+            imageFilter: ImageFilter.blur(
+                sigmaX: 2.0, sigmaY: 3.0), // Adjust the blur intensity here
+            child: Container(
               height: 200,
               decoration: BoxDecoration(
-                color:ColorsManger.darkblue,
-              ),)
-        ),
+                color: ColorsManger.darkblue,
+              ),
+            )),
       ),
       Padding(
         padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -110,31 +111,33 @@ Widget Header() {
             SizedBox(
               height: 15,
             ),
-            Obx(()=>Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "WELCOME  ${controller.UserName}",
-                  style: TextStyle(
-                      color: ColorsManger.white,
-                      fontSize: 16.spMin,
-                      fontWeight: FontWeight.bold),
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.notifications,
-                      size: 35,
-                      color: ColorsManger.white,
-                    ))
-              ],
-            ),),
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "WELCOME  ${controller.UserName}",
+                    style: TextStyle(
+                        color: ColorsManger.white,
+                        fontSize: 16.spMin,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.notifications,
+                        size: 35,
+                        color: ColorsManger.white,
+                      ))
+                ],
+              ),
+            ),
             Text(
               "A clean Car is a\nhappy car!",
               style: TextStyle(
                   color: ColorsManger.white,
                   fontWeight: FontWeight.bold,
-                  fontSize:30.spMin),
+                  fontSize: 30.spMin),
             ),
             SizedBox(
               height: 10,
@@ -154,7 +157,8 @@ Widget Header() {
                   fillColor: ColorsManger.white,
                   prefixIcon: Icon(Icons.search, size: 20.sp),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 12.h), // Adjust the padding
+                  contentPadding: EdgeInsets.symmetric(
+                      vertical: 12.h), // Adjust the padding
                 ),
               ),
             ),
@@ -194,7 +198,7 @@ Widget Features_services() {
                     "${features[i]['title']}",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16.spMin,
+                        fontSize: 13.spMin,
                         color: ColorsManger.darkblue),
                   )
                 ],
@@ -231,17 +235,17 @@ Widget appointment() {
             Expanded(
               child: Stack(
                 children: [
-                  Container(width:100,
+                  Container(
+                    width: 100,
                     decoration: BoxDecoration(
-                      color:Colors.blueGrey,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15),
-                        topLeft: Radius.circular(15),
-                        bottomRight:Radius.circular(0),
-                        topRight:Radius.circular(100),
-                      )
-
-                  ),),
+                        color: Colors.blueGrey,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          topLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(0),
+                          topRight: Radius.circular(100),
+                        )),
+                  ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(15, 12, 0, 12),
                     child: Column(
@@ -255,8 +259,8 @@ Widget appointment() {
                               fontWeight: FontWeight.bold,
                               color: ColorsManger.white),
                         ),
-                        CustomButton("Book now",(){
-                          Get.to(()=>ServicesView());
+                        CustomButton("Book now", () {
+                          Get.to(() => ServicesView());
                         })
                       ],
                     ),
@@ -299,11 +303,11 @@ Widget Promotions() {
         decoration: BoxDecoration(
           color: ColorsManger.darkblue,
           borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(
-                image: AssetImage("images/offers2.jpg"),
-                fit: BoxFit.cover,
-              ),
-              // borderRadius: BorderRadius.circular(15),
+          image: DecorationImage(
+            image: AssetImage("images/offers2.jpg"),
+            fit: BoxFit.cover,
+          ),
+          // borderRadius: BorderRadius.circular(15),
           // image: DecorationImage(image: AssetImage("images/img.png"),fit: BoxFit.cover)
         ),
         child: Row(
@@ -320,7 +324,7 @@ Widget Promotions() {
                             fontSize: 20.spMin,
                             fontWeight: FontWeight.bold,
                             color: ColorsManger.white)),
-                    CustomButton("Join now",(){ })
+                    CustomButton("Join now", () {})
                   ],
                 ),
               ),
@@ -359,10 +363,10 @@ Widget About_us() {
         height: 150.h,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: ColorsManger.darkblue,
-          borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(image: AssetImage("images/img_1.png"),fit: BoxFit.cover)
-        ),
+            color: ColorsManger.darkblue,
+            borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(
+                image: AssetImage("images/img_1.png"), fit: BoxFit.cover)),
         child: Row(
           children: [
             Expanded(
@@ -372,7 +376,8 @@ Widget About_us() {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CustomButton("Get to Know Us",()=>Get.to(()=>AboutUsView()))
+                    CustomButton(
+                        "Get to Know Us", () => Get.to(() => AboutUsView()))
                   ],
                 ),
               ),

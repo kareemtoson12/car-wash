@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:clean_wash/core/widgets/stepper_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_stepper/easy_stepper.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -12,7 +12,6 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:clean_wash/core/colors_manger.dart';
 import 'package:clean_wash/core/widgets/NextButton.dart';
@@ -105,7 +104,7 @@ class _MapScreenState extends State<MapWidget> {
                           ),
                   ),
                 ),
-                NextButton('Next', PaymentView(), () {}, 250)
+                NextButton('Next', const PaymentView(), () {}, 250)
               ],
             ),
           ),
@@ -204,33 +203,25 @@ class _MapScreenState extends State<MapWidget> {
     // Save the route and markers on the map
     getRoutes(point);
 
-    // Save to SharedPreferences
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setDouble('selected_latitude', point.latitude);
-    prefs.setDouble('selected_longitude', point.longitude);
-
     // Save the selected location to Firestore
     await _saveLocationToFirestore(point);
   }
 
   Future<void> _saveLocationToFirestore(LatLng point) async {
     try {
-      // Get the current user
       User? user = FirebaseAuth.instance.currentUser;
 
       if (user != null) {
-        // Create a reference to the user's document in Firestore
         DocumentReference userRef = FirebaseFirestore.instance
             .collection('Users')
             .doc(user.email); // Use user's email as document ID
 
-        // Save the selected location (latitude and longitude) in Firestore
         await userRef.set({
           'selectedLocation': {
             'latitude': point.latitude,
             'longitude': point.longitude,
           },
-        }, SetOptions(merge: true)); // Merge with existing data
+        }, SetOptions(merge: true));
 
         Get.snackbar('Success', 'Location saved successfully!');
       } else {

@@ -47,6 +47,7 @@ dependencies:
   google_sign_in:
   http:
   location:
+  qr_flutter: ^4.1.0
   shared_preferences:
   table_calendar:
 
