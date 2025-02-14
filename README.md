@@ -1,16 +1,52 @@
-# clean_wash
 
-A new Flutter project.
+# Car Wash Application 🚘🧽  
 
-## Getting Started
+## Overview  
+A fully functional car wash application built using **Flutter** and **Firebase**, providing users with an easy and efficient way to book car wash services nearby.
 
-This project is a starting point for a Flutter application.
+## 🛠️ Technologies Used  
+- **Flutter** with **GetX** for state management  
+- **Firebase** for backend services  
+- **Stripe** for secure payment processing  
+- **Google Maps API** for location-based services  
+- MVC architecture for scalable and maintainable code  
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Key Features  
+- 📍 **Location-based Services:** Find nearby car washes using Google Maps.  
+- 💳 **Secure Payments:** Integrated Stripe for fast and reliable transactions.  
+- 📱 **Responsive Design:** Consistent and smooth user experience across devices.  
+- 🛠️ **MVC Architecture:** Ensures modular, maintainable, and scalable code.  
+<!-- Uploading "Screenshot 2025-02-14 151732.png"... -->
+## 📂 Project Structure  
+```
+lib/
+  ├── controllers/
+  ├── models/
+  ├── views/
+  ├── widgets/
+  └── main.dart
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 💻 Installation  
+1. **Clone the repository:**  
+   ```bash
+   git clone https://github.com/kareemtoson12/car-wash.git
+   ```
+2. **Navigate to the project directory:**  
+   ```bash
+   cd car-wash
+   ```
+3. **Install dependencies:**  
+   ```bash
+   flutter pub get
+   ```
+4. **Run the app:**  
+   ```bash
+   flutter run
+   ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📝 License  
+This project is licensed under the MIT License. Feel free to use and modify it for your projects.  
+
+---  
+Made with ❤️ by Karim toson 🚀
