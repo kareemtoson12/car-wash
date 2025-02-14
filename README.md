@@ -10,13 +10,13 @@ A fully functional car wash application built using **Flutter** and **Firebase**
 - **Stripe** for secure payment processing  
 - **Google Maps API** for location-based services  
 - MVC architecture for scalable and maintainable code  
-
+<!-- Uploading "Screenshot 2025-02-14 151732.png"... -->
 ## 🚀 Key Features  
 - 📍 **Location-based Services:** Find nearby car washes using Google Maps.  
 - 💳 **Secure Payments:** Integrated Stripe for fast and reliable transactions.  
 - 📱 **Responsive Design:** Consistent and smooth user experience across devices.  
 - 🛠️ **MVC Architecture:** Ensures modular, maintainable, and scalable code.  
-<!-- Uploading "Screenshot 2025-02-14 151732.png"... -->
+
 ## 📂 Project Structure  
 ```
 lib/
