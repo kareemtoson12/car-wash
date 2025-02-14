@@ -16,7 +16,7 @@ A fully functional car wash application built using **Flutter** and **Firebase**
 - 💳 **Secure Payments:** Integrated Stripe for fast and reliable transactions.  
 - 📱 **Responsive Design:** Consistent and smooth user experience across devices.  
 - 🛠️ **MVC Architecture:** Ensures modular, maintainable, and scalable code.  
-
+![Image](https://github.com/user-attachments/assets/aa15a8a2-5bc7-484a-bbb3-4ba3416f751f)
 ## 📂 Project Structure  
 ```
 lib/
